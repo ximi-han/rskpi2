@@ -9,6 +9,9 @@ public partial class Modules_OrganizaMana_EhrUserImport : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if(!IsPostBack)
+        {
 
+        }
     }
 }

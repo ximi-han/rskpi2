@@ -1,9 +1,14 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPageDefault.master" CodeFile="AssessUserDeploy.aspx.cs" Inherits="Modules_OrganizaMana_AssessUserDeploy" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1"%>
+<%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+    Namespace="System.Web.UI" TagPrefix="asp" %>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <asp:ScriptManager ID="im" runat="server"/>
     <asp:UpdatePanel ID="up" runat="server">
+        <triggers>
+            <asp:PostBackTrigger ControlID="btnExcel" />
+        </triggers>
         <ContentTemplate>
             <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="up" DisplayAfter="0" DynamicLayout="False">
                 <ProgressTemplate>
@@ -49,7 +54,6 @@
                                 </td>
                                 <td colspan=5></td>
                                 <td>
-                                    <%--<asp:Button ID="txtDeploy" runat="server" Text="調配" Height="20px" Width="70px" OnClick="txtDeploy_Click"/>--%>
                                     <asp:Button ID="btnExcel" runat="server" Text="Excel匯出" Height="20px" Width="70px" OnClick="btnExcel_Click" />
                                 </td>
                             </tr>
@@ -58,11 +62,11 @@
                 </div>
             </asp:Panel>
             <asp:Panel ID="Panel2" runat="server">
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Width="700px" AllowPaging="True" GridLines="Horizontal" PageSize="15" OnPageIndexChanging="GridView1_PageIndexChanging">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Width="700px" AllowPaging="True" GridLines="Horizontal" PageSize="15" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowCommand="GridView1_RowCommand" >
                     <Columns>
                         <asp:TemplateField HeaderText="調配">
                             <ItemTemplate>
-                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Images/WebPartIcon/edit.gif" CommandName="UserDeploy" CommandArgument='<%# Eval("EmpID")%>' ToolTip="調配" OnClientClick="return confirm('請確認是否要進行人員調配？');"/>
+                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Images/WebPartIcon/edit.gif" CommandName="UserDeploy" CommandArgument='<%# Eval("EmpID")%>' ToolTip="調配"/>
                             </ItemTemplate>
                             <HeaderStyle Wrap="False" />
                             <ItemStyle Wrap="False" />
@@ -105,60 +109,70 @@
                     <AlternatingRowStyle CssClass="gvar"></AlternatingRowStyle>
                 </asp:GridView>
             </asp:Panel>
-           <%--彈出框--%>
-            <cc1:ModalPopupExtender ID="MPEShow" runat="server" TargetControlID="btnMPEShow" PopupControlID="pnlMPEShow" BackgroundCssClass="modalbg"></cc1:ModalPopupExtender>
-            <asp:Button   ID="btnMPEShow" runat="server" Text="Show" Style="display: none" />
-            <asp:Panel    ID="pnlMPEShow" runat="server" CssClass="popup" Width="320px" Height="232px">
-                <div style="color:white; margin-top :-6px; text-align:center">人員調配</div>
-                <asp:Panel ID="Panel3" runat="server">
-                    <div class="fullwidth2">
-                        <table class="popuptable">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="Label4" runat="server" Text="工號:" Width="70px"></asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="TextBox1" runat="server" Width="150px" Height="18px"></asp:TextBox>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="Label5" runat="server" Text="姓名:" Width="70px"></asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="TextBox2" runat="server" Width="150px" Height="18px"></asp:TextBox>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="Label6" runat="server" Text="考核主管:" Width="70px"></asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="TextBox3" runat="server" Width="150px" Height="18px"></asp:TextBox>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <br/>
-                        <br/>
-                        <table>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <asp:Button ID="Button1" runat="server" Text="確認" Width="100px" Height="20px"/>
-                                        </td>
-                                        <td colspan="10"></td>
-                                        <td>
-                                        <asp:Button ID="Button2" runat="server" Text="取消" Width="100px" Height="20px"/>
-                                    </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </table>
-                    </div>
-                </asp:Panel>
+            <%--彈出調配--%>
+            <cc1:ModalPopupExtender ID="ModalPopupExtenderDeploy" runat="server" TargetControlID="Button1" BackgroundCssClass="modalbg" PopupControlID="Panel3" ></cc1:ModalPopupExtender>
+            <asp:Button  ID="Button1" runat="server" Text="Show" Style="display:none"/>
+            <asp:Panel  ID="Panel3" runat="server" Width="490px" CssClass="popup">
+                <div style="color:white;margin-top:-6px; text-align:center">人員信息調配</div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td colspan="50">工號:</td>
+                            <td colspan="140" style="border-bottom:solid 1px #CECEDA;">
+                                <asp:TextBox ID="TextBox1" runat="server" MaxLength="50" Height="20px"  Width="200px" Enabled="false"></asp:TextBox>
+                                <span style="color:red">*</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="50">姓名:</td>
+                            <td colspan="140" style="border-bottom:solid 1px #CECEDA;">
+                                <asp:TextBox ID="TextBox2" runat="server"  Height="20px" Width="200px" Style="line-height:20px" Enabled="false"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="50">部門ID:</td>
+                            <td colspan="140" style="border-bottom:solid 1px #CECEDA">
+                                <asp:TextBox ID="TextBox3" runat="server"  Height="20px" Width="200px" Enabled="false"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="50">部門名稱:</td>
+                            <td colspan="140" style="border-bottom:solid 1px #CECEDA">
+                                <asp:TextBox ID="TextBox4" runat="server" Height="20px" Width="200px" Style="line-height:20px" Enabled="false"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="50">調配后部門ID:</td>
+                            <td colspan="140" style="border-bottom:solid 1px #CECEDA">
+                                <asp:TextBox ID="TextBox5" runat="server" Height="20px" Width="200px"></asp:TextBox>
+                                <asp:Button ID="Button2" runat="server" Text="檢索部門名稱" Width="80px" Height="21px" OnClick="Button2_Click"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="50">調配后部門名稱:</td>
+                            <td colspan="140" style="border-bottom:solid 1px #CECEDA">
+                                <asp:TextBox ID="TextBox6" runat="server" Height="20px" Width="200px" Style="line-height:20px" Enabled="false"></asp:TextBox>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr class="hr"/>
+                <table border="0" style="margin-left:auto; margin-right:auto">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <asp:Button ID="Button3" runat="server" Text="調配" onmouseover="this.className='btn_mouseover'" onmouseout="this.className='btn_mouseout'" CssClass="btn_mouseout" OnClick="Button3_Click"/>
+                            </td>
+                            <td>
+                                <asp:Button ID="Button4" runat="server" Text="關閉" onmoueover="this.className='btn_mouseover'" onmouseout="this.className='btn_mouseout'" CssClass="btn_mouseout"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr class="hr"/>
+                <div class="message">
+                    相關信息:<asp:Label ID="LabMsg1" runat="server"></asp:Label>
+                </div>
             </asp:Panel>
             <div class="message">
                 相關信息:

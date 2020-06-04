@@ -21,7 +21,37 @@
                                     <asp:Label ID="Label1" runat="server" Width="40px"></asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Button ID="Button1" runat="server" Text="人員導入" Height="25px" Width="120px" />
+                                    <asp:Button ID="Button1" runat="server" Text="日騰(RT)導入" Height="25px" Width="80px" />
+                                </td>
+                                <td>
+                                    <span style="height :25px;width:20px" >>></span>
+                                </td>
+                                <td>
+                                    <asp:Button ID="Button3" runat="server" Text="日沛(RP)導入" Height="25px" Width="80px" />
+                                </td>
+                                <td>
+                                    <span style="height :25px;width:20px" >>></span>
+                                </td>
+                                <td>
+                                    <asp:Button ID="Button4" runat="server" Text="日銘(RM)導入" Height="25px" Width="80px" />
+                                </td>
+                                <td>
+                                    <span style="height :25px;width:20px" >>></span>
+                                </td>
+                                <td>
+                                    <asp:Button ID="Button5" runat="server" Text="日鎧(RK)導入" Height="25px" Width="80px" />
+                                </td>
+                                <td>
+                                    <span style="height :25px;width:20px" >>></span>
+                                </td>
+                                <td>
+                                    <asp:Button ID="Button6" runat="server" Text="日善(RS)導入" Height="25px" Width="80px" />
+                                </td>
+                                <td>
+                                    <span style="height :25px;width:20px" >>></span>
+                                </td>
+                                <td>
+                                    <asp:Button ID="Button7" runat="server" Text="勝瑞(SR)導入" Height="25px" Width="80px" />
                                 </td>
                             </tr>
                         </tbody>
@@ -32,10 +62,18 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <asp:Label ID="Label2" runat="server" Text="部門代碼:" Width="70px"></asp:Label>
+                                    <asp:Label ID="Label2" runat="server" Text="公司簡碼:" Width="70px"></asp:Label>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="TextBox1" runat="server" Height="18px" Width="120px"></asp:TextBox>
+                                    <asp:DropDownList ID="DropFactory" runat="server" Height="18px" Width="120px"></asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <asp:Label ID="Label4" runat="server" Text="部門編碼:" Width="70px"></asp:Label>
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="TextBox3" runat="server" Height="18px" Width="120px"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -47,7 +85,11 @@
                                 </td>
                                 <td colspan="10"></td>
                                 <td>
-                                    <asp:Button ID="Button2" runat="server" Text="預覽" Width="70px" Height="22px" />
+                                    <asp:Button ID="Button2" runat="server" Text="查詢" Width="70px" Height="22px" />
+                                </td>
+                                                                <td colspan="10"></td>
+                                <td>
+                                    <asp:Button ID="Button8" runat="server" Text="Excel匯出" Width="70px" Height="22px" />
                                 </td>
                             </tr>
                         </tbody>
