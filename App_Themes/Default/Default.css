@@ -1,0 +1,474 @@
+﻿/*一、登录页面*/
+
+*
+{
+	font-size:12px;
+	font-family:Tahoma;
+	margin:0;
+	padding:0;
+}
+
+body 
+{	
+    background:url(Images/background.jpg)repeat;
+	color:#676767;
+	scrollbar-face-color: #DEEEF8; 
+	scrollbar-shadow-color: #DEEEF8; 
+	scrollbar-highlight-color: #F7F7F7; 
+	scrollbar-3dlight-color: #DEEEF8; 
+	scrollbar-darkshadow-color: #B0C3D6; 
+	scrollbar-track-color: #F7F7F7; 
+	scrollbar-arrow-color: #60915E; 
+}
+
+#box
+{
+	width:664px;	
+    background:#FFFFFF;
+	border:solid 1px #B2B2B2;
+    margin-top:100px;
+	margin-left:auto;
+	margin-right:auto;
+    height:453px;
+}
+
+#header
+{
+   background:url(Images/timg4.jpg);
+   width:664px;
+   height:122px;
+}
+
+#center
+{
+   width:664px;
+   height:311px;
+}
+
+#lmain
+{
+    width:200px;
+    height:120px;
+    margin-left:60px;
+    margin-top:83px;
+}
+
+#footer 
+{
+    width:664px;
+    height:20px;
+    background:#E2E2E2;
+    border-top:solid 1px #BEBEBE;
+    border-bottom:solid 1px #BEBEBE;
+}
+
+
+#left 
+{
+     background:url(Images/left.jpg);
+     height:271px;
+     width:332px;
+     float:left;
+}
+
+#right
+{
+    width:332px;   
+    float:left;
+}
+
+#account 
+{
+    margin-left:3px;
+}
+
+#loginin 
+{
+    margin-left:3px;
+}
+
+#changepwd 
+{
+    margin-left:91px;
+}
+
+#message 
+{
+    margin-left:10px;
+}
+
+/*二、母版页*/
+#box1
+{
+    width:996px;
+    border:solid 1px #B2B2B2;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#poster
+{
+    width:996px;
+    height:87px;
+    background:url(Images/posterGSKPI.jpg);
+}
+
+#nav1 
+{
+    width:996px;
+    height:26px;
+    background-color:#E8CFD5;
+    border-top:solid 1px #264A94;
+    border-bottom:solid 3px #BEBEBE;
+    line-height:26px;
+}
+
+#navlist
+{
+    width:200px;
+    height:26px;
+    float:left;
+    margin-left:10px;
+}
+
+#navlist ul
+{
+    height:26px;
+    list-style:none;
+}
+
+#navlist li
+{
+    height:26px;
+    float:left;
+}
+
+#navlist li a
+{
+	height:26px;
+	padding-left:10px;
+	padding-right:10px;
+	float:left;
+}
+
+#navlist li a:hover
+{
+	background-color:#4AA4CD;
+}
+
+#status 
+{
+    height:26px;
+    color:black;
+    float:right;
+    padding-right:10px;
+}
+
+
+#center1
+{
+    width:996px;
+    background:url(Images/menue_bg.gif) repeat-y left top;
+    overflow:auto;
+}
+#menu1 
+{
+    width:185px;
+    /*临时*/
+    /*height:390px;
+    background-color:#D1CFD0;*/
+    padding-bottom:20px;
+    float:left;
+    overflow:auto;
+}
+
+#main1 
+{
+    width:791px;
+    padding:5px 10px;
+    float:left;
+    clear:right;
+    overflow-x:auto;
+}
+
+#footer1 
+{
+    width:996px;
+	padding-top:10px;
+	padding-bottom:10px;
+	border-top:solid 1px #BEBEBE;
+	border-top:solid 3px #BEBEBE;
+	text-align:center;
+	line-height:22px;
+	background-color:#E8CFD5;
+	color:black;
+}
+
+
+/*Menu*/
+.c_subNav *{list-style:none;}
+.c_subNav table { width:100%; border-collapse:collapse;}
+.c_subNav { width:180px; }
+.c_subNav a { text-decoration:none; color:#676767;}
+.c_subNav a:hover { color:#f60;}
+.c_subNav ul ul { position:absolute; visibility:hidden; display:none; right:-160px; top:10px;}
+.c_subNav li { border-bottom:1px solid #ccc; position:relative; _position:static; float:left; width:100%;}
+.c_subNav a.li { position:relative;}
+.c_subNav li .option { display:block; line-height:15px; padding:18px 0px 5px 60px; background:no-repeat 5px 4px; cursor:pointer; font:12px Verdana; zoom:1; background:url(../../Images/Menu/menu.jpg) no-repeat;}
+.c_subNav li .option:hover { color:#f60;}
+.c_subNav li .option span { display:block; padding-right:15px; background:url(../../Images/Menu/menu.jpg) no-repeat right -275px;}
+.c_subNav li .option:hover span { background-position:right -290px;}
+.c_subNav .li:hover { z-index:2; background:transparent;}
+.c_subNav .li:hover ul { visibility:visible; display:block }
+.c_subNav .li:hover ul ul { visibility:hidden; display:none;}
+.c_subNav .li:hover ul { border:1px solid #ccc; border-width:1px 1px 1px 1px; width:170px; background:#edf5fa; padding:5px 0px 1px 1px;}
+.c_subNav .li:hover li { border-bottom:none;}
+.c_subNav .li:hover li .option { padding:2px 5px; background:transparent;}
+.c_subNav .li:hover li .option:hover { color:#f60;}
+.c_subNav .li:hover li .option:hover span { background-position:right -290px;}
+.c_subNav .li:hover .li:hover ul { visibility:visible; display:block; left:168px; top:-2px;}
+
+/*圖片*/
+.c_subNav .zzgl .option { background-position:4px 5px; border-bottom:solid 1px #B2B2B2;}
+.c_subNav .khcs .option { background-position:4px -35px; border-bottom:solid 1px #B2B2B2;}
+.c_subNav .kqzb .option { background-position:4px -75px; border-bottom:solid 1px #B2B2B2;}
+.c_subNav .khpf .option { background-position:4px -75px; border-bottom:solid 1px #B2B2B2;}
+.c_subNav .khhz .option { background-position:4px -75px; border-bottom:solid 1px #B2B2B2;}
+.c_subNav .bbzx .option { background-position:4px -75px; border-bottom:solid 1px #B2B2B2;}
+.c_subNav .xtsd .option { background-position:4px -75px; border-bottom:solid 1px #B2B2B2;}
+
+
+/*三、修改密码页面*/
+
+#box2
+{
+	width:664px;	
+    background:#FFFFFF;
+	border:solid 1px #B2B2B2;
+    margin-top:100px;
+	margin-left:auto;
+	margin-right:auto;
+    height:470px;
+}
+
+#header2 
+{
+   background:url(Images/changepwd.jpg);
+   width:100%;
+   height:122px;
+}
+
+#center2
+{
+   width:100%;
+   height:302px;
+   background:#FFFFFF;
+}
+
+#main2 
+{
+    width:300px;
+    height:180px;
+    margin-left:182px;
+    margin-top:60px;
+    border:solid 1px #B2B2B2;
+    background:#ECE8E7;
+}
+
+#tabelchanpwd1
+{
+    width:250px;
+    height:150px;
+    margin-left:35px;
+}
+#tabelchanpwd2
+{
+    margin-left:80px;
+}
+
+#footer2 
+{
+    width:664px;
+    height:20px;
+    /*background:#E8E8EC;*/
+    background:#E8CFD5;
+    border-top:solid 1px #BEBEBE;
+    border-bottom:solid 2px #BEBEBE;
+}
+
+#nav2 
+{
+    width:664px;
+    height:20px;
+    /*background-color:#6BB031;*/
+    background-color:#E8CFD5;
+    border-top:solid 1px #264A94;
+    border-bottom:solid 2px #BEBEBE;
+    color:white;
+    line-height:28px; !important;
+    line-height:24px;
+}
+
+#titleimage
+{
+	float:left;
+}
+
+#title 
+{
+    font-size:medium;
+    font-weight:bold;
+    float:left;
+    margin-top:15px;
+    margin-left:5px;
+}
+
+#currentuser 
+{
+    float:right;
+    margin-top:19px;
+}
+
+.fullwidth1 
+{
+    margin-top:5px;
+    margin-bottom:10px;
+    margin-left:auto;
+    margin-right:auto;
+    width:700px;
+    border:solid 1px #BEBEBE;
+    padding:10px;
+}
+
+.gvr 
+{
+    padding:0 10px;
+    background: #F8F4E9;
+    color: #284775;
+}
+
+
+.gvar
+{
+	padding:2px 10px;
+    background: #FFFFFF;
+    color: #284775;
+}
+
+.gvh
+{
+    background:url(images/gv_title_bg.gif) repeat-x;
+    height:22px;
+    width:auto;
+}
+
+.message
+{
+	width:100%;
+	height:22px;	
+	line-height:21px;
+	background:#E2E2E2;
+	border-top:solid 1px #D6D5D9;
+	border-bottom:solid 1px #D6D5D9;
+	margin-top:10px;
+}
+
+/*popup*/ 
+.modalbg
+{
+    background-color:gray;
+    filter:alpha(opacity=70);
+}
+
+.popup 
+{
+    padding:10px;
+    margin:0;
+    border:solid 1px #7F7F7F;
+    height:auto;
+    width:auto;
+    background:#EDEDED url(Images/popuptitle.gif) repeat-x;
+}
+
+.fullwidth2 
+{
+    margin-top:15px;
+    margin-bottom:10px;
+    margin-left:auto;
+    margin-right:auto;
+    width:240px;
+    height:190px;
+    border:solid 1px #BEBEBE;
+    padding:10px;
+}
+
+.fullwidth3
+{
+    margin-top:5px;
+    margin-bottom:10px;
+    margin-left:auto;
+    margin-right:auto;
+    width:400px;
+    padding:10px;
+}
+
+.fullwidth4
+{
+    margin-top:25px;
+    margin-bottom:10px;
+    margin-left:auto;
+    margin-right:auto;
+    width:600px;
+    border:solid 1px #BEBEBE;
+    padding:10px;
+}
+
+.fullwidth4 table td
+{
+    border:1px solid #CDD8E8;
+    line-height:25px;
+    box-shadow:1px 1px 1px 1px #929598;
+}
+
+.contentbox 
+{
+    padding:20px 20px;
+    background:#F0F0F5;
+    border:solid 1px #CCCCCC;
+	margin-bottom:10px;
+}
+
+.IframStyle
+{
+     position: absolute; 
+     z-index: 9998; 
+     width: expression(this.nextSibling.offsetWidth);
+    height: expression(this.nextSibling.offsetHeight); 
+    top: expression(this.nextSibling.offsetTop);
+    left: expression(this.nextSibling.offsetLeft);
+    background-color:gray; 
+    filter:alpha(opacity=0); 
+    opacity=0;
+}
+
+.WaitBackground
+{
+     /*background-color:gray;
+     filter:alpha(opacity=90);
+     opacity=.9;*/
+     height:expression(document.body.clientHeight + "px");   
+     width:expression(document.body.clientWidth + "px");   
+     z-index:9999;
+     position:absolute;
+     top:0;
+     left:0;
+}
+
+.LoadingBack
+{
+     z-index:10000; 
+     position:absolute;
+     top:30%;
+     width:100%;
+     text-align:center; 
+}

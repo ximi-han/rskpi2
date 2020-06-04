@@ -1,0 +1,112 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPageDefault.master.cs" Inherits="MasterPageDefault" %>
+
+<%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+    Namespace="System.Web.UI" TagPrefix="asp" %>
+<%@ Reference Page="~/Login.aspx" %>
+<!DOCTYPE html PUBLIC "-//W3C/DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>铠胜集团绩效系统</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="box1">
+        <div id="poster">
+        </div>
+        <div id="nav1">
+            <div id="navlist">
+                <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="false" />
+                <asp:Repeater ID="TopNavRepeat" runat="server" DataSourceID="SiteMapDataSource1">
+                    <HeaderTemplate>
+                        <ul>
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <li>
+                            <asp:HyperLink ID="HyperLink1" runat="server" Text='<%# Eval("Title") %>' NavigateUrl='<%# Eval("Url") %>' ToolTip='<%# Eval("Description") %>' ForeColor="Black" />
+                        </li>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        </ul>
+                    </FooterTemplate>
+                </asp:Repeater>
+            </div>
+            <div id="status">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label1" runat="server" Text="工號:"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="txtCurrentEmpID" runat="server"></asp:Label>
+                            </td>
+                            <td colspan="5">
+                            <td>
+                                <asp:Label ID="Label3" runat="server" Text="姓名:"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="txtCurrentEmpName" runat="server"></asp:Label>
+                            </td>
+                            <td colspan="5">
+                            <td>
+                                <asp:Label ID="Label5" runat="server" Text="賬號:"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="txtCurrentDomainAccount" runat="server"></asp:Label>
+                            </td>
+                            
+                        </tr>
+                    </tbody>
+                </table>              
+            </div>
+        </div>
+        <div id="center1">
+            <div id="menu1">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td>
+                            <div class="c_subNav" align ="left">
+                                <ul>
+                                    <li class="li zzgl">
+                                        <a href ="<%=ResolveClientUrl("~/Modules/OrganizaMana/OrganizaManaMain.aspx") %>" class="option">組織管理</a>
+                                    </li>
+                                    <li class="li khcs">
+                                        <a href ="<%=ResolveClientUrl("~/Modules/AssessPara/AssessParaMain.aspx") %>" class="option">考核参数</a>
+                                    </li>
+                                    <li class="li kqzb">
+                                        <a href ="<%=ResolveClientUrl("~/Modules/AttendanceIndicators/AttendanceIndicatorsMain.aspx") %>" class="option">考勤指標</a>
+                                    </li>
+                                    <li class="li khpf">
+                                        <a href="<%=ResolveClientUrl("~/Modules/ScoreAssess/ScoreAssessMain.aspx") %>" class="option">考核評分</a>
+                                    </li>
+                                    <li class="li khhz">
+                                        <a href="<%=ResolveClientUrl("~/Modules/AssessApproval/AssessApprovalMain.aspx") %>" class="option">考核核准</a>
+                                    </li>
+                                    <li class="li bbzx">
+                                        <a href="<%=ResolveClientUrl("~/Modules/ReportCenter/ReportCenterMain.aspx") %>" class="option">報表中心</a>
+                                    </li>
+                                    <li class="li xtsd">
+                                        <a href="<%=ResolveClientUrl("~/Modules/SystemSet/SystemSetMain.aspx") %>" class="option">系統設定</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="main1">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+            </asp:ContentPlaceHolder>
+            </div>
+        </div>
+        <div id="footer1">
+                Casetekcorp KPI Web Address here © 2020 CasetekcorpKPI Site.                
+                <asp:Label ID="Lbl_VersionID" runat="server" Text="Soft Version："></asp:Label>
+        </div>
+    </div> 
+    </form>
+</body>
+</html>
