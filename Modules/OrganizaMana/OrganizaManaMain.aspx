@@ -18,7 +18,7 @@
                                     <asp:Image ID="Image2" runat="server" ImageUrl="~/Images/Item/ba01.gif"/>
                                 </td>
                                 <td>
-                                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Modules/OrganizaMana/EhrUserImport.aspx">日善EHR人員資料導入</asp:HyperLink>
+                                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Modules/OrganizaMana/EhrUserImport.aspx">EHR人員資料導入</asp:HyperLink>
                                 </td>
                             </tr>
                             <tr>
@@ -26,7 +26,7 @@
                                     <asp:Image ID="Image3" runat="server" ImageUrl="~/Images/Item/ba01.gif"/>
                                 </td>
                                 <td>
-                                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Modules/OrganizaMana/EhrDeptOrganizaImport.aspx">日善EHR部門組織導入</asp:HyperLink>
+                                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Modules/OrganizaMana/EhrDeptOrganizaImport.aspx">EHR部門組織導入</asp:HyperLink>
                                 </td>
                             </tr>
                         </tbody>

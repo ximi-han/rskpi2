@@ -9,6 +9,7 @@
 <body>
     <form id="form1" runat="server">
     <div id ="box">
+        <a href="Component/">Component/</a>
         <div id="header">  
         </div>
         <div id="center">
