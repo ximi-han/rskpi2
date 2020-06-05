@@ -10,7 +10,7 @@ namespace Casetek.KPI
 { 
 public class DomainAccount
 {
-        private static string _connectionString;
+        private static string v_DbconnStr;
     static DomainAccount()
     {
         Initialize();
@@ -18,16 +18,7 @@ public class DomainAccount
 
         public static void Initialize()
         {
-            string v_ConnectionStringsType = "KPIConnectionString";
-
-            if (ConfigurationManager.ConnectionStrings[v_ConnectionStringsType] == null ||
-                ConfigurationManager.ConnectionStrings[v_ConnectionStringsType].ConnectionString.Trim() == "")
-            {
-                throw new Exception("A connection string named 'ConnectionStringType' with a valid connection string " +
-                                    "must exist in the <connectionStrings> configuration section for the application.");
-            }
-
-            _connectionString = ConfigurationManager.ConnectionStrings[v_ConnectionStringsType].ConnectionString;
+            v_DbconnStr = Coeno.BLL.Data.DbAccess.GetKpiDbConnStr();
         }
 
         public static string UserDomain(string v_empid)
@@ -35,7 +26,7 @@ public class DomainAccount
             string userdomain = "";
             string sql = "select Domain from HR_Emp_Now where EmpID = '" + v_empid + "'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql, con);
 
             DataSet ds = new DataSet();
@@ -66,7 +57,7 @@ public class DomainAccount
             string userdomainaccount = "";
             string sql = "select DomainAccount from HR_Emp_Now where EmpID = '" + v_empid + "'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql, con);
 
             DataSet ds = new DataSet();

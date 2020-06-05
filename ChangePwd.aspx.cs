@@ -49,84 +49,9 @@ public partial class ChangePwd : System.Web.UI.Page
         #endregion
 
         #region 2.驗證舊密碼輸入
-        string v_OldPwd = "";
-        //1.日善
-        if (ddlFactory.SelectedValue=="RS")
-        {
-            v_OldPwd = Casetek.KPI.UserPwd.ConOldPwdRS(txtEmpID.Text);
+        //if (!confirmOldPwd(txtEmpID.Text)) return;
+        if(!confirmOldPwd2(txtEmpID.Text)) return;
 
-            if (txtOPwd.Text != v_OldPwd)
-            {
-                lblMsg.Text = "舊密碼輸入不正確！！";
-                lblMsg.ForeColor = System.Drawing.Color.Red;
-                return;
-            }
-        }
-
-        //2.日騰
-        if (ddlFactory.SelectedValue == "RT")
-        {
-            v_OldPwd = Casetek.KPI.UserPwd.ConOldPwdRT(txtEmpID.Text);
-
-            if (txtOPwd.Text != v_OldPwd)
-            {
-                lblMsg.Text = "舊密碼輸入不正確！！";
-                lblMsg.ForeColor = System.Drawing.Color.Red;
-                return;
-            }
-        }
-
-        //3.日沛
-        if (ddlFactory.SelectedValue == "RP")
-        {
-            v_OldPwd = Casetek.KPI.UserPwd.ConOldPwdRP(txtEmpID.Text);
-
-            if (txtOPwd.Text != v_OldPwd)
-            {
-                lblMsg.Text = "舊密碼輸入不正確！！";
-                lblMsg.ForeColor = System.Drawing.Color.Red;
-                return;
-            }
-        }
-
-        //4.日銘
-        if (ddlFactory.SelectedValue == "RM")
-        {
-            v_OldPwd = Casetek.KPI.UserPwd.ConOldPwdRM(txtEmpID.Text);
-
-            if (txtOPwd.Text != v_OldPwd)
-            {
-                lblMsg.Text = "舊密碼輸入不正確！！";
-                lblMsg.ForeColor = System.Drawing.Color.Red;
-                return;
-            }
-        }
-
-        //5.日鎧
-        if (ddlFactory.SelectedValue == "RK")
-        {
-            v_OldPwd = Casetek.KPI.UserPwd.ConOldPwdRK(txtEmpID.Text);
-
-            if (txtOPwd.Text != v_OldPwd)
-            {
-                lblMsg.Text = "舊密碼輸入不正確！！";
-                lblMsg.ForeColor = System.Drawing.Color.Red;
-                return;
-            }
-        }
-
-        //6.勝瑞
-        if (ddlFactory.SelectedValue == "SR")
-        {
-            v_OldPwd = Casetek.KPI.UserPwd.ConOldPwdSR(txtEmpID.Text);
-
-            if (txtOPwd.Text != v_OldPwd)
-            {
-                lblMsg.Text = "舊密碼輸入不正確！！";
-                lblMsg.ForeColor = System.Drawing.Color.Red;
-                return;
-            }
-        }
         #endregion
 
         #region 3.驗證新密碼是否一致
@@ -142,7 +67,7 @@ public partial class ChangePwd : System.Web.UI.Page
         //1.日善
         if (ddlFactory.SelectedValue== "0112")
         {
-            string result = Casetek.KPI.UserPwd.UpPwdRS(txtEmpID.Text, txtRNPwd.Text);
+            string result = Coeno.BLL.Entity.SystemSet.UserPwd.UpPwdRS(txtEmpID.Text, txtRNPwd.Text);
 
             if (result == "密碼更新成功")
             {
@@ -161,7 +86,7 @@ public partial class ChangePwd : System.Web.UI.Page
         //2.日騰
         if (ddlFactory.SelectedValue == "0000")
         {
-            string result = Casetek.KPI.UserPwd.UpPwdRT(txtEmpID.Text, txtRNPwd.Text);
+            string result = Coeno.BLL.Entity.SystemSet.UserPwd.UpPwdRT(txtEmpID.Text, txtRNPwd.Text);
 
             if (result == "密碼更新成功")
             {
@@ -180,7 +105,7 @@ public partial class ChangePwd : System.Web.UI.Page
         //3.日沛
         if (ddlFactory.SelectedValue == "0105")
         {
-            string result = Casetek.KPI.UserPwd.UpPwdRP(txtEmpID.Text, txtRNPwd.Text);
+            string result = Coeno.BLL.Entity.SystemSet.UserPwd.UpPwdRP(txtEmpID.Text, txtRNPwd.Text);
 
             if (result == "密碼更新成功")
             {
@@ -199,7 +124,7 @@ public partial class ChangePwd : System.Web.UI.Page
         //4.日銘
         if (ddlFactory.SelectedValue == "0103")
         {
-            string result = Casetek.KPI.UserPwd.UpPwdRM(txtEmpID.Text, txtRNPwd.Text);
+            string result = Coeno.BLL.Entity.SystemSet.UserPwd.UpPwdRM(txtEmpID.Text, txtRNPwd.Text);
 
             if (result == "密碼更新成功")
             {
@@ -218,7 +143,7 @@ public partial class ChangePwd : System.Web.UI.Page
         //5.日鎧
         if (ddlFactory.SelectedValue == "0111")
         {
-            string result = Casetek.KPI.UserPwd.UpPwdRK(txtEmpID.Text, txtRNPwd.Text);
+            string result = Coeno.BLL.Entity.SystemSet.UserPwd.UpPwdRK(txtEmpID.Text, txtRNPwd.Text);
 
             if (result == "密碼更新成功")
             {
@@ -237,7 +162,7 @@ public partial class ChangePwd : System.Web.UI.Page
         //6.勝瑞
         if (ddlFactory.SelectedValue == "0102")
         {
-            string result = Casetek.KPI.UserPwd.UpPwdSR(txtEmpID.Text, txtRNPwd.Text);
+            string result = Coeno.BLL.Entity.SystemSet.UserPwd.UpPwdSR(txtEmpID.Text, txtRNPwd.Text);
 
             if (result == "密碼更新成功")
             {
@@ -258,11 +183,115 @@ public partial class ChangePwd : System.Web.UI.Page
     protected void FactoryBind()
     {
         /*廠區*/
-        DataTable dtfactory = Casetek.KPI.Factorys.QueryFactory();
+        DataTable dtfactory = Coeno.BLL.Entity.SystemSet.Factorys.QueryFactory();
         ddlFactory.DataSource = dtfactory;
         ddlFactory.DataTextField = "FactoryName";
         ddlFactory.DataValueField = "GroupID";
         ddlFactory.DataBind();
 
     }
+    /// <summary>
+    /// 驗證舊密碼輸入
+    /// </summary>
+    /// <param name="v_empid">員工ID</param>
+    /// <returns></returns>
+    protected bool confirmOldPwd(string v_empid)
+    {
+        bool result = false;
+        string v_OldPwd = "";
+        //1.日善
+        if (ddlFactory.SelectedValue == "RS")
+        {
+            v_OldPwd = Coeno.BLL.Entity.SystemSet.UserPwd.ConOldPwdRS(v_empid);
+
+            if (txtOPwd.Text != v_OldPwd)
+            {
+                lblMsg.Text = "舊密碼輸入不正確！！";
+                lblMsg.ForeColor = System.Drawing.Color.Red;
+                return true;
+            }
+        }
+
+        //2.日騰
+        if (ddlFactory.SelectedValue == "RT")
+        {
+            v_OldPwd = Coeno.BLL.Entity.SystemSet.UserPwd.ConOldPwdRT(v_empid);
+
+            if (txtOPwd.Text != v_OldPwd)
+            {
+                lblMsg.Text = "舊密碼輸入不正確！！";
+                lblMsg.ForeColor = System.Drawing.Color.Red;
+                return true;
+            }
+        }
+
+        //3.日沛
+        if (ddlFactory.SelectedValue == "RP")
+        {
+            v_OldPwd = Coeno.BLL.Entity.SystemSet.UserPwd.ConOldPwdRP(v_empid);
+
+            if (txtOPwd.Text != v_OldPwd)
+            {
+                lblMsg.Text = "舊密碼輸入不正確！！";
+                lblMsg.ForeColor = System.Drawing.Color.Red;
+                return true;
+            }
+        }
+
+        //4.日銘
+        if (ddlFactory.SelectedValue == "RM")
+        {
+            v_OldPwd = Coeno.BLL.Entity.SystemSet.UserPwd.ConOldPwdRM(v_empid);
+
+            if (txtOPwd.Text != v_OldPwd)
+            {
+                lblMsg.Text = "舊密碼輸入不正確！！";
+                lblMsg.ForeColor = System.Drawing.Color.Red;
+                return true;
+            }
+        }
+
+        //5.日鎧
+        if (ddlFactory.SelectedValue == "RK")
+        {
+            v_OldPwd = Coeno.BLL.Entity.SystemSet.UserPwd.ConOldPwdRK(v_empid);
+
+            if (txtOPwd.Text != v_OldPwd)
+            {
+                lblMsg.Text = "舊密碼輸入不正確！！";
+                lblMsg.ForeColor = System.Drawing.Color.Red;
+                return true;
+            }
+        }
+
+        //6.勝瑞
+        if (ddlFactory.SelectedValue == "SR")
+        {
+            v_OldPwd = Coeno.BLL.Entity.SystemSet.UserPwd.ConOldPwdSR(v_empid);
+
+            if (txtOPwd.Text != v_OldPwd)
+            {
+                lblMsg.Text = "舊密碼輸入不正確！！";
+                lblMsg.ForeColor = System.Drawing.Color.Red;
+                return true;
+            }
+        }
+        return result;
+    }
+
+    protected bool confirmOldPwd2(string v_empid)
+    {
+        bool result = false;
+        string v_OldPwd = "";
+        v_OldPwd = Coeno.BLL.Entity.SystemSet.UserPwd.ConOldPwd(v_empid);
+        if (txtOPwd.Text != v_OldPwd)
+        {
+           lblMsg.Text = "舊密碼輸入不正確！！";
+           lblMsg.ForeColor = System.Drawing.Color.Red;
+           return true;
+        }
+        return result;
+    }
+
+
 }

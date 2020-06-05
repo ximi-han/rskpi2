@@ -20,7 +20,7 @@ public partial class MasterPageDefault : System.Web.UI.MasterPage
         if (!IsPostBack)
         {
             loginUserName = Request.QueryString["loginUserName"];
-            loginUserName = Encrypt.Decrypto(loginUserName);
+            loginUserName = Coeno.Common.Utility.Encrypt.Decrypto(loginUserName);
             if (Session["loginUserName"] == null || Session["loginUserName"] == "")
             {
                 Session["loginUserName"] = loginUserName;

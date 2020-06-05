@@ -3,11 +3,11 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 
-namespace Casetek.KPI
+namespace Coeno.BLL.Entity.SystemSet
 {
     public class Factorys
     {
-        private static string _connectionString;
+        private static string v_DbconnStr;
         static Factorys()
         {
             Initialize();
@@ -15,23 +15,15 @@ namespace Casetek.KPI
 
     public static void Initialize()
     {
-        string v_ConnectionStringsType = "KPIConnectionString";
+        v_DbconnStr = Coeno.BLL.Data.DbAccess.GetKpiDbConnStr();
 
-        if (ConfigurationManager.ConnectionStrings[v_ConnectionStringsType] == null ||
-            ConfigurationManager.ConnectionStrings[v_ConnectionStringsType].ConnectionString.Trim() == "")
-        {
-            throw new Exception("A connection string named 'ConnectionStringType' with a valid connection string " +
-                                "must exist in the <connectionStrings> configuration section for the application.");
-        }
-
-        _connectionString =ConfigurationManager.ConnectionStrings[v_ConnectionStringsType].ConnectionString;
     }
 
     //一、廠區查詢
         public static DataTable QueryFactory()
         {
             string sql = "select GroupID, FactoryName from CasetekFactory";
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql,con);
 
             DataSet ds = new DataSet();
@@ -55,7 +47,7 @@ namespace Casetek.KPI
         public static DataTable QueryFactoryPara(string v_factory)
         {
             string sql = "select FactoryID from CasetekFactory where FactoryID = '"+v_factory+"'";
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql, con);
 
             DataSet ds = new DataSet();
@@ -83,7 +75,7 @@ namespace Casetek.KPI
             //string UserFactory = "";
             string sql = "select GroupID from HR_Emp_Now where EmpID = '"+v_empid+"'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql,con);
 
             DataSet ds = new DataSet();
@@ -109,14 +101,15 @@ namespace Casetek.KPI
             return ds;
         }
 
-        // //用戶廠區查詢//1.UserRoleSet
+        //查詢廠區用戶
+        //1.UserRoleSet
 
         public static string UserInFactorys(string v_empid)
         {
             string UserFactory = "";
             string sql = "select GroupID from HR_Emp_Now where EmpID = '" + v_empid + "'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql, con);
 
             DataSet ds = new DataSet();
@@ -149,7 +142,7 @@ namespace Casetek.KPI
             string sql = "";
             sql = "select DeptID,DeptName from HR_Dept where GroupID = '"+v_site+"'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql,con);
 
             DataSet ds = new DataSet();
