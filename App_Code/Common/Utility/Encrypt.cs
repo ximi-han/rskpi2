@@ -7,7 +7,7 @@ using System.Configuration;
 using System.IO;
 using System.Security.Cryptography;
 
-namespace Casetek.KPI
+namespace Coeno.Common.Utility
 {
 public class Encrypt
 {

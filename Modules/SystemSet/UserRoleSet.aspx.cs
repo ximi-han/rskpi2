@@ -43,7 +43,7 @@ public partial class Modules_SystemSet_UserRoleSet : System.Web.UI.Page
         else
         {
             //**用戶廠區//
-            DataSet UserInFactory = Casetek.KPI.Factorys.UserInFactory(txtEmpID.Text);
+            DataSet UserInFactory = Coeno.BLL.Entity.SystemSet.Factorys.UserInFactory(txtEmpID.Text);
 
             if (UserInFactory.Tables[0].Rows.Count <= 0)
             {
@@ -92,7 +92,7 @@ public partial class Modules_SystemSet_UserRoleSet : System.Web.UI.Page
     protected void SiteBind()
     {
         DataTable site = new DataTable();
-        site = Casetek.KPI.Factorys.QueryFactory();
+        site = Coeno.BLL.Entity.SystemSet.Factorys.QueryFactory();
         DropSite.DataSource = site;
         DropSite.DataTextField = "FactoryName";
         DropSite.DataValueField = "GroupID";

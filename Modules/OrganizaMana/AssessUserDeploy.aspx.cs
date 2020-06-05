@@ -31,7 +31,7 @@ public partial class Modules_OrganizaMana_AssessUserDeploy : System.Web.UI.Page
 
     protected void PageForm_Permission(string v_empID,string[] v_roleID)
     {
-        string  UserInFactory = Casetek.KPI.Factorys.UserInFactorys(v_empID);
+        string  UserInFactory = Coeno.BLL.Entity.SystemSet.Factorys.UserInFactorys(v_empID);
 
         if (!(Casetek.KPI.UsersInRoles.UserInRoles(v_empID, v_roleID[0], UserInFactory)) && !(Casetek.KPI.UsersInRoles.UserInRoles(v_empID, v_roleID[1], UserInFactory)))
         {
@@ -43,7 +43,7 @@ public partial class Modules_OrganizaMana_AssessUserDeploy : System.Web.UI.Page
     protected void PageForm_ddlSiteBind()
     {
         DataTable site = new DataTable();
-        site = Casetek.KPI.Factorys.QueryFactory();
+        site = Coeno.BLL.Entity.SystemSet.Factorys.QueryFactory();
         DropDownList1.DataSource = site;
         DropDownList1.DataTextField = "FactoryName";
         DropDownList1.DataValueField = "GroupID";
@@ -53,7 +53,7 @@ public partial class Modules_OrganizaMana_AssessUserDeploy : System.Web.UI.Page
     protected void PageForm_ddlDept(string site)
     {
         DataTable Dept = new DataTable();
-        Dept = Casetek.KPI.Factorys.QueryDept(site);
+        Dept = Coeno.BLL.Entity.SystemSet.Factorys.QueryDept(site);
 
         DropDownList2.DataSource = Dept;
         DropDownList2.DataTextField = "DeptName";
@@ -76,7 +76,7 @@ public partial class Modules_OrganizaMana_AssessUserDeploy : System.Web.UI.Page
         if (txtEmpID.Text!="")
         {
             DataTable dt = new DataTable();
-            dt = Casetek.KPI.AssessUserDeploy.QueryDeployUser(txtEmpID.Text);
+            dt = Coeno.BLL.Entity.OrganizaMana.AssessUserDeploy.QueryDeployUser(txtEmpID.Text);
             if (dt.Rows.Count<=0)
             {
                 LabMsg.Text = "無調配人員信息！！";
@@ -92,7 +92,7 @@ public partial class Modules_OrganizaMana_AssessUserDeploy : System.Web.UI.Page
         else
         {
             DataTable DT = new DataTable();
-            DT = Casetek.KPI.AssessUserDeploy.QueryDeployUser(DropDownList1.SelectedValue, DropDownList2.SelectedValue);
+            DT = Coeno.BLL.Entity.OrganizaMana.AssessUserDeploy.QueryDeployUser(DropDownList1.SelectedValue, DropDownList2.SelectedValue);
             if (DT.Rows.Count <= 0)
             {
                 LabMsg.Text = "無調配人員信息！！";
@@ -113,7 +113,7 @@ public partial class Modules_OrganizaMana_AssessUserDeploy : System.Web.UI.Page
         GridView1.PageIndex = e.NewPageIndex;
 
         DataTable DS = new DataTable();
-        DS = Casetek.KPI.AssessUserDeploy.QueryDeployUser(DropDownList1.SelectedValue, DropDownList2.SelectedValue);
+        DS = Coeno.BLL.Entity.OrganizaMana.AssessUserDeploy.QueryDeployUser(DropDownList1.SelectedValue, DropDownList2.SelectedValue);
         GridView1.DataSource = DS;
         GridView1.DataBind();
     }
@@ -128,7 +128,7 @@ public partial class Modules_OrganizaMana_AssessUserDeploy : System.Web.UI.Page
             if (txtEmpID.Text!="")
             {
                 DataTable dt = new DataTable();
-                dt = Casetek.KPI.AssessUserDeploy.QueryDeployUser(txtEmpID.Text);
+                dt = Coeno.BLL.Entity.OrganizaMana.AssessUserDeploy.QueryDeployUser(txtEmpID.Text);
                 if (dt.Rows.Count<=0)
                 {
                     LabMsg.Text = "無數據可導出！！";
@@ -137,13 +137,13 @@ public partial class Modules_OrganizaMana_AssessUserDeploy : System.Web.UI.Page
                 }
                 else
                 {
-                    Casetek.KPI.ExcelUtility.DataTableToExcel(dt);
+                    Coeno.Common.Utility.ExcelUtility.DataTableToExcel(dt);
                 }
             }
             else
             {
                 DataTable DT = new DataTable();
-                DT = Casetek.KPI.AssessUserDeploy.QueryDeployUser(DropDownList1.SelectedValue,DropDownList2.SelectedValue);
+                DT = Coeno.BLL.Entity.OrganizaMana.AssessUserDeploy.QueryDeployUser(DropDownList1.SelectedValue,DropDownList2.SelectedValue);
                 if (DT.Rows.Count <= 0)
                 {
                     LabMsg.Text = "無數據可導出！！";
@@ -152,7 +152,7 @@ public partial class Modules_OrganizaMana_AssessUserDeploy : System.Web.UI.Page
                 }
                 else
                 {
-                    Casetek.KPI.ExcelUtility.DataTableToExcel(DT);
+                    Coeno.Common.Utility.ExcelUtility.DataTableToExcel(DT);
                 }
             }
         }
@@ -173,7 +173,7 @@ public partial class Modules_OrganizaMana_AssessUserDeploy : System.Web.UI.Page
         if (e.CommandName== "UserDeploy")
         {
             DataTable dt = new DataTable();
-            dt = Casetek.KPI.AssessUserDeploy.QueryDeployUser(e.CommandArgument.ToString());
+            dt = Coeno.BLL.Entity.OrganizaMana.AssessUserDeploy.QueryDeployUser(e.CommandArgument.ToString());
             ModalPopupExtenderDeploy.Show();
             TextBox1.Text = dt.Rows[0]["EmpID"].ToString();
             TextBox2.Text = dt.Rows[0]["EmpName"].ToString();
@@ -187,7 +187,7 @@ public partial class Modules_OrganizaMana_AssessUserDeploy : System.Web.UI.Page
     {
         LabMsg1.Text = "";
         DataTable dt = new DataTable();
-        dt = Casetek.KPI.AssessUserDeploy.QueryDeployDeptName(TextBox5.Text);
+        dt = Coeno.BLL.Entity.OrganizaMana.AssessUserDeploy.QueryDeployDeptName(TextBox5.Text);
 
         if (dt.Rows.Count>0)
         {
@@ -225,14 +225,14 @@ public partial class Modules_OrganizaMana_AssessUserDeploy : System.Web.UI.Page
         }
 
         DataTable DT = new DataTable();
-        DT = Casetek.KPI.AssessUserDeploy.QueryDeployDeptName(TextBox5.Text);
+        DT = Coeno.BLL.Entity.OrganizaMana.AssessUserDeploy.QueryDeployDeptName(TextBox5.Text);
         if (DT.Rows.Count > 0)
         {
             DataTable dt = new DataTable();
-            dt = Casetek.KPI.AssessUserDeploy.QueryEmpAdjust(TextBox1.Text);
+            dt = Coeno.BLL.Entity.OrganizaMana.AssessUserDeploy.QueryEmpAdjust(TextBox1.Text);
             if (dt.Rows.Count>0)
             {
-                int result = Casetek.KPI.AssessUserDeploy.upEmpAdjust(TextBox1.Text,TextBox5.Text,TextBox6.Text, empID, nowtime);
+                int result = Coeno.BLL.Entity.OrganizaMana.AssessUserDeploy.upEmpAdjust(TextBox1.Text,TextBox5.Text,TextBox6.Text, empID, nowtime);
                 if (result == 0)
                 {
                     MPEShow();
@@ -252,12 +252,12 @@ public partial class Modules_OrganizaMana_AssessUserDeploy : System.Web.UI.Page
             else
             {
                 DataTable gpdt = new DataTable();
-                gpdt = Casetek.KPI.AssessUserDeploy.QueryDeployUser(TextBox1.Text);
+                gpdt = Coeno.BLL.Entity.OrganizaMana.AssessUserDeploy.QueryDeployUser(TextBox1.Text);
 
                 if (gpdt.Rows.Count>0)
                 {
                     string gropid = gpdt.Rows[0]["GroupID"].ToString();
-                    int result = Casetek.KPI.AssessUserDeploy.adEmpAdjust(TextBox1.Text, TextBox2.Text,gropid,TextBox3.Text,TextBox4.Text,TextBox5.Text,TextBox6.Text,empID, nowtime);
+                    int result = Coeno.BLL.Entity.OrganizaMana.AssessUserDeploy.adEmpAdjust(TextBox1.Text, TextBox2.Text,gropid,TextBox3.Text,TextBox4.Text,TextBox5.Text,TextBox6.Text,empID, nowtime);
 
                     if (result==0)
                     {

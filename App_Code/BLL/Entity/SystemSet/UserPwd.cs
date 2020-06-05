@@ -3,29 +3,21 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 
-namespace Casetek.KPI
+namespace Coeno.BLL.Entity.SystemSet
 { 
 public class UserPwd
 {
-    private static string _connectionString;
-        static UserPwd()
+    private static string v_DbconnStr;
+    static UserPwd()
     {
        Initialize();
     }
 
     public static void Initialize()
     {
-         string v_ConnectionStringsType = "KPIConnectionString";
-
-         if (ConfigurationManager.ConnectionStrings[v_ConnectionStringsType] == null ||
-             ConfigurationManager.ConnectionStrings[v_ConnectionStringsType].ConnectionString.Trim() == "")
-            {
-                throw new Exception("A connection string named 'ConnectionStringType' with a valid connection string " +
-                                    "must exist in the <connectionStrings> configuration section for the application.");
-            }
-
-            _connectionString = ConfigurationManager.ConnectionStrings[v_ConnectionStringsType].ConnectionString;
+         v_DbconnStr = Coeno.BLL.Data.DbAccess.GetKpiDbConnStr();
     }
+
         /// <summary>
         /// 登錄頁面
         /// </summary>
@@ -39,7 +31,7 @@ public class UserPwd
         {
             string sql = "select empid from CasetekUserPwd_RS where empid = '"+v_empid+ "' and Pwd1 = '"+v_pwd+"'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql,con);
 
             DataSet ds = new DataSet();
@@ -65,7 +57,7 @@ public class UserPwd
         {
             string sql = "select empid from CasetekUserPwd_RT where empid = '" + v_empid + "' and Pwd1 = '" + v_pwd + "'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql, con);
 
             DataSet ds = new DataSet();
@@ -91,7 +83,7 @@ public class UserPwd
         {
             string sql = "select empid from CasetekUserPwd_RP where empid = '" + v_empid + "' and Pwd1 = '" + v_pwd + "'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql, con);
 
             DataSet ds = new DataSet();
@@ -117,7 +109,7 @@ public class UserPwd
         {
             string sql = "select empid from CasetekUserPwd_RM where empid = '" + v_empid + "' and Pwd1 = '" + v_pwd + "'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql, con);
 
             DataSet ds = new DataSet();
@@ -143,7 +135,7 @@ public class UserPwd
         {
             string sql = "select empid from CasetekUserPwd_RK where empid = '" + v_empid + "' and Pwd1 = '" + v_pwd + "'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql, con);
 
             DataSet ds = new DataSet();
@@ -169,7 +161,7 @@ public class UserPwd
         {
             string sql = "select empid from CasetekUserPwd_SR where empid = '" + v_empid + "' and Pwd1 = '" + v_pwd + "'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql, con);
 
             DataSet ds = new DataSet();
@@ -197,15 +189,43 @@ public class UserPwd
         /// </summary>
         /// <param name="v_empid"></param>
         /// <returns></returns>
-        
+
         #region 一、驗證舊密碼
+        public static string ConOldPwd(string v_empid)
+        {
+            string OPwd1 = "";
+            string sql = "select Pwd1 from CasetekUserPwd where EmpID = '" + v_empid + "'";
+            SqlConnection con = new SqlConnection(v_DbconnStr);
+            SqlDataAdapter da = new SqlDataAdapter(sql, con);
+            DataSet ds = new DataSet();
+            try
+            {
+                con.Open();
+                da.Fill(ds, "CasetekUserPwd");
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            if (ds.Tables["CasetekUserPwd"].Rows.Count > 0)
+            {
+                OPwd1 = ds.Tables["CasetekUserPwd"].Rows[0]["Pwd1"].ToString();
+            }
+            return OPwd1;
+        }
+
         //1.日善
         public static string ConOldPwdRS(string v_empid)
         {
             string OPwd1 = "";
             string sql = "select Pwd1 from CasetekUserPwd_RS where EmpID = '"+v_empid+"'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql,con);
 
             DataSet ds = new DataSet();
@@ -236,7 +256,7 @@ public class UserPwd
             string OPwd1 = "";
             string sql = "select Pwd1 from CasetekUserPwd_RT where EmpID = '" + v_empid + "'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql, con);
 
             DataSet ds = new DataSet();
@@ -269,7 +289,7 @@ public class UserPwd
             string OPwd1 = "";
             string sql = "select Pwd1 from CasetekUserPwd_RP where EmpID = '" + v_empid + "'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql, con);
 
             DataSet ds = new DataSet();
@@ -301,7 +321,7 @@ public class UserPwd
             string OPwd1 = "";
             string sql = "select Pwd1 from CasetekUserPwd_RM where EmpID = '" + v_empid + "'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql, con);
 
             DataSet ds = new DataSet();
@@ -333,7 +353,7 @@ public class UserPwd
             string OPwd1 = "";
             string sql = "select Pwd1 from CasetekUserPwd_RK where EmpID = '" + v_empid + "'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql, con);
 
             DataSet ds = new DataSet();
@@ -365,7 +385,7 @@ public class UserPwd
             string OPwd1 = "";
             string sql = "select Pwd1 from CasetekUserPwd_SR where EmpID = '" + v_empid + "'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql, con);
 
             DataSet ds = new DataSet();
@@ -399,7 +419,7 @@ public class UserPwd
             string v_result = "";
 
             string sql = "update CasetekUserPwd_RS set Pwd1 = '"+v_pwd+"' where empid = '"+v_empid+"'";
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlCommand com = new SqlCommand(sql,con);
 
             try
@@ -424,7 +444,7 @@ public class UserPwd
             string v_result = "";
 
             string sql = "update CasetekUserPwd_RT set Pwd1 = '" + v_pwd + "' where empid = '" + v_empid + "'";
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlCommand com = new SqlCommand(sql, con);
 
             try
@@ -450,7 +470,7 @@ public class UserPwd
             string v_result = "";
 
             string sql = "update CasetekUserPwd_RP set Pwd1 = '" + v_pwd + "' where empid = '" + v_empid + "'";
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlCommand com = new SqlCommand(sql, con);
 
             try
@@ -476,7 +496,7 @@ public class UserPwd
             string v_result = "";
 
             string sql = "update CasetekUserPwd_RM set Pwd1 = '" + v_pwd + "' where empid = '" + v_empid + "'";
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlCommand com = new SqlCommand(sql, con);
 
             try
@@ -502,7 +522,7 @@ public class UserPwd
             string v_result = "";
 
             string sql = "update CasetekUserPwd_RK set Pwd1 = '" + v_pwd + "' where empid = '" + v_empid + "'";
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlCommand com = new SqlCommand(sql, con);
 
             try
@@ -528,7 +548,7 @@ public class UserPwd
             string v_result = "";
 
             string sql = "update CasetekUserPwd_SR set Pwd1 = '" + v_pwd + "' where empid = '" + v_empid + "'";
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlCommand com = new SqlCommand(sql, con);
 
             try
@@ -555,7 +575,7 @@ public class UserPwd
         {
             string sqlrs = "select a.EmpID,a.EmpName,a.DeptID,a.DeptName,a.GroupID from HR_Emp_Now a,CasetekUserPwd_RS b where a.EmpID = b.EmpID and b.EmpID = '"+v_empid+ "' and a.GroupID = '"+v_group+"'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sqlrs,con);
 
             DataSet ds = new DataSet();
@@ -580,7 +600,7 @@ public class UserPwd
         {
             string sqlrs = "select a.EmpID,a.EmpName,a.DeptID,a.DeptName,a.GroupID from HR_Emp_Now a,CasetekUserPwd_RK b where a.EmpID = b.EmpID and b.EmpID = '" + v_empid + "' and a.GroupID = '" + v_group + "'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sqlrs, con);
 
             DataSet ds = new DataSet();
@@ -606,7 +626,7 @@ public class UserPwd
         {
             string sqlrs = "select a.EmpID,a.EmpName,a.DeptID,a.DeptName,a.GroupID from HR_Emp_Now a,CasetekUserPwd_RM b where a.EmpID = b.EmpID and b.EmpID = '" + v_empid + "' and a.GroupID = '" + v_group + "'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sqlrs, con);
 
             DataSet ds = new DataSet();
@@ -632,7 +652,7 @@ public class UserPwd
         {
             string sqlrs = "select a.EmpID,a.EmpName,a.DeptID,a.DeptName,a.GroupID from HR_Emp_Now a,CasetekUserPwd_RP b where a.EmpID = b.EmpID and b.EmpID = '" + v_empid + "' and a.GroupID = '" + v_group + "'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sqlrs, con);
 
             DataSet ds = new DataSet();
@@ -658,7 +678,7 @@ public class UserPwd
         {
             string sqlrs = "select a.EmpID,a.EmpName,a.DeptID,a.DeptName,a.GroupID from HR_Emp_Now a,CasetekUserPwd_RT b where a.EmpID = b.EmpID and b.EmpID = '" + v_empid + "' and a.GroupID = '" + v_group + "'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sqlrs, con);
 
             DataSet ds = new DataSet();
@@ -684,7 +704,7 @@ public class UserPwd
         {
             string sqlrs = "select a.EmpID,a.EmpName,a.DeptID,a.DeptName,a.GroupID from HR_Emp_Now a,CasetekUserPwd_SR b where a.EmpID = b.EmpID and b.EmpID = '" + v_empid + "' and a.GroupID = '" + v_group + "'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sqlrs, con);
 
             DataSet ds = new DataSet();
@@ -742,7 +762,7 @@ public class UserPwd
                 sql = "sqlsr";
             }
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql, con);
 
             DataSet ds = new DataSet();
@@ -801,7 +821,7 @@ public class UserPwd
                 sql = sqlsr;
             }
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlCommand com = new SqlCommand(sql,con);
 
             try
@@ -821,6 +841,30 @@ public class UserPwd
             return result;
         }
         #endregion
+
+        public static int PwdInitialization2(string v_empid, string v_groupid)
+        {
+            int result = 0;
+            string sql = "";
+            string sqlr = "update CasetekUserPwd set Pwd1 ='12345' from CasetekUserPwd a,HR_Emp_Now b where a.EmpID = b.EmpID and a.EmpID = '" + v_empid + "' and b.GroupID = '" + v_groupid + "'";
+            SqlConnection con = new SqlConnection(v_DbconnStr);
+            SqlCommand com = new SqlCommand(sql, con);
+            try
+            {
+                con.Open();
+                com.ExecuteNonQuery();
+                result = 1;
+            }
+            catch
+            {
+                result = 0;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return result;
+        }
 
         public static DataSet QueryPwd(string v_factory,string v_empid,string v_pwd)
         {
@@ -856,7 +900,7 @@ public class UserPwd
                 sql = "select empid from CasetekUserPwd_SR where empid = '" + v_empid + "' and Pwd1 = '" + v_pwd + "'";
             }
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql,con);
             DataSet ds = new DataSet();
 
@@ -876,6 +920,32 @@ public class UserPwd
             }
             return ds;
         }
+
+        public static DataSet QueryPwd2(string v_factory, string v_empid, string v_pwd)
+        {
+            string sql = null;
+            sql = "select empid from CasetekUserPwd where empid = '" + v_empid + "' and Pwd1 = '" + v_pwd + "' and GroupID= '" + v_factory + "' ";
+            SqlConnection con = new SqlConnection(v_DbconnStr);
+            SqlDataAdapter da = new SqlDataAdapter(sql, con);
+            DataSet ds = new DataSet();
+
+            try
+            {
+                con.Open();
+                da.Fill(ds, "CasetekUserPwd");
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+
+            }
+            finally
+            {
+                con.Close();
+            }
+            return ds;
+        }
+
     }
 
 }

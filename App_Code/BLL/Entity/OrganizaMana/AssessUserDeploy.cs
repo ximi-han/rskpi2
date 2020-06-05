@@ -10,7 +10,7 @@ using System.Configuration;
 /// <summary>
 /// Summary description for AssessUserDeploy
 /// </summary>
-namespace Casetek.KPI
+namespace Coeno.BLL.Entity.OrganizaMana
 { 
 public class AssessUserDeploy
 {

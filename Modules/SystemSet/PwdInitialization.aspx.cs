@@ -27,7 +27,7 @@ public partial class Modules_SystemSet_PwdInitialization : System.Web.UI.Page
             return;
         }
 
-        DataSet UserInFactory = Casetek.KPI.Factorys.UserInFactory(txtEmpID.Text);
+        DataSet UserInFactory = Coeno.BLL.Entity.SystemSet.Factorys.UserInFactory(txtEmpID.Text);
 
         if (UserInFactory.Tables[0].Rows.Count <= 0)
         {
@@ -54,7 +54,7 @@ public partial class Modules_SystemSet_PwdInitialization : System.Web.UI.Page
 
             try
             {
-                int result = Casetek.KPI.UserPwd.PwdInitialization(empid,groupid);
+                int result = Coeno.BLL.Entity.SystemSet.UserPwd.PwdInitialization2(empid,groupid);
                 if (result == 0)
                 {
                     labMsg.Text = "初始化用戶密碼失敗！！";
@@ -80,11 +80,11 @@ public partial class Modules_SystemSet_PwdInitialization : System.Web.UI.Page
 
     protected void GridViewBind()
     {
-        string UserInFactorys = Casetek.KPI.Factorys.UserInFactorys(txtEmpID.Text);
+        string UserInFactorys = Coeno.BLL.Entity.SystemSet.Factorys.UserInFactorys(txtEmpID.Text);
 
         if (UserInFactorys == "0112")
         {
-            DataSet UserPwdMessageRS = Casetek.KPI.UserPwd.UserPwdMessageRS(txtEmpID.Text, UserInFactorys);
+            DataSet UserPwdMessageRS = Coeno.BLL.Entity.SystemSet.UserPwd.UserPwdMessageRS(txtEmpID.Text, UserInFactorys);
             if (UserPwdMessageRS.Tables[0].Rows.Count <= 0)
             {
                 labMsg.Text = "未查詢到該用戶登錄賬戶信息！！";
@@ -100,7 +100,7 @@ public partial class Modules_SystemSet_PwdInitialization : System.Web.UI.Page
 
         if (UserInFactorys == "0111")
         {
-            DataSet UserPwdMessageRK = Casetek.KPI.UserPwd.UserPwdMessageRK(txtEmpID.Text, UserInFactorys);
+            DataSet UserPwdMessageRK = Coeno.BLL.Entity.SystemSet.UserPwd.UserPwdMessageRK(txtEmpID.Text, UserInFactorys);
             if (UserPwdMessageRK.Tables[0].Rows.Count <= 0)
             {
                 labMsg.Text = "未查詢到該用戶登錄賬戶信息！！";
@@ -116,7 +116,7 @@ public partial class Modules_SystemSet_PwdInitialization : System.Web.UI.Page
 
         if (UserInFactorys == "0103")
         {
-            DataSet UserPwdMessageRM = Casetek.KPI.UserPwd.UserPwdMessageRM(txtEmpID.Text, UserInFactorys);
+            DataSet UserPwdMessageRM = Coeno.BLL.Entity.SystemSet.UserPwd.UserPwdMessageRM(txtEmpID.Text, UserInFactorys);
             if (UserPwdMessageRM.Tables[0].Rows.Count <= 0)
             {
                 labMsg.Text = "未查詢到該用戶登錄賬戶信息！！";
@@ -132,7 +132,7 @@ public partial class Modules_SystemSet_PwdInitialization : System.Web.UI.Page
 
         if (UserInFactorys == "0105")
         {
-            DataSet UserPwdMessageRP = Casetek.KPI.UserPwd.UserPwdMessageRP(txtEmpID.Text, UserInFactorys);
+            DataSet UserPwdMessageRP = Coeno.BLL.Entity.SystemSet.UserPwd.UserPwdMessageRP(txtEmpID.Text, UserInFactorys);
             if (UserPwdMessageRP.Tables[0].Rows.Count <= 0)
             {
                 labMsg.Text = "未查詢到該用戶登錄賬戶信息！！";
@@ -148,7 +148,7 @@ public partial class Modules_SystemSet_PwdInitialization : System.Web.UI.Page
 
         if (UserInFactorys == "0000")
         {
-            DataSet UserPwdMessageRT = Casetek.KPI.UserPwd.UserPwdMessageRT(txtEmpID.Text, UserInFactorys);
+            DataSet UserPwdMessageRT = Coeno.BLL.Entity.SystemSet.UserPwd.UserPwdMessageRT(txtEmpID.Text, UserInFactorys);
             if (UserPwdMessageRT.Tables[0].Rows.Count <= 0)
             {
                 labMsg.Text = "未查詢到該用戶登錄賬戶信息！！";
@@ -164,7 +164,7 @@ public partial class Modules_SystemSet_PwdInitialization : System.Web.UI.Page
 
         if (UserInFactorys == "0102")
         {
-            DataSet UserPwdMessageSR = Casetek.KPI.UserPwd.UserPwdMessageSR(txtEmpID.Text, UserInFactorys);
+            DataSet UserPwdMessageSR = Coeno.BLL.Entity.SystemSet.UserPwd.UserPwdMessageSR(txtEmpID.Text, UserInFactorys);
             if (UserPwdMessageSR.Tables[0].Rows.Count <= 0)
             {
                 labMsg.Text = "未查詢到該用戶登錄賬戶信息！！";
@@ -181,9 +181,9 @@ public partial class Modules_SystemSet_PwdInitialization : System.Web.UI.Page
 
     protected void GridViewBind1()
     {
-         string UserInFactorys = Casetek.KPI.Factorys.UserInFactorys(txtEmpID.Text);
+         string UserInFactorys = Coeno.BLL.Entity.SystemSet.Factorys.UserInFactorys(txtEmpID.Text);
 
-         DataSet UserPwdMessage = Casetek.KPI.UserPwd.UserPwdMessage(txtEmpID.Text, UserInFactorys);
+         DataSet UserPwdMessage = Coeno.BLL.Entity.SystemSet.UserPwd.UserPwdMessage(txtEmpID.Text, UserInFactorys);
          if (UserPwdMessage.Tables[0].Rows.Count <= 0)
          {
             labMsg.Text = "未查詢到該用戶登錄賬戶信息！！";

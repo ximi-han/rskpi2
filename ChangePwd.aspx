@@ -5,6 +5,11 @@
 <head runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <title>密碼修改</title>
+    <style type="text/css">
+        #tabelchanpwd1 {
+            width: 402px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -29,7 +34,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <asp:Label runat="server">賬號名：</asp:Label>
+                                    <asp:Label runat="server">員工號：</asp:Label>
                                 </td>
                                 <td>
                                     <asp:TextBox runat="server" Width="150px" Height="20px" ID="txtEmpID"></asp:TextBox>

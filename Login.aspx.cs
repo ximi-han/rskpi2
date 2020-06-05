@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Data;
-using Casetek.KPI;
+using Coeno.BLL.Entity.SystemSet;
 using System.DirectoryServices;
-using Casetek.KPI;
 
 
 public partial class Login : System.Web.UI.Page
@@ -98,15 +97,15 @@ public partial class Login : System.Web.UI.Page
         DataSet ds = null;
         try
         {
-            Factory = Casetek.KPI.Factorys.UserInFactorys(txtEmpID.Text);
+            Factory = Coeno.BLL.Entity.SystemSet.Factorys.UserInFactorys(txtEmpID.Text);
             if (Factory == null || Factory =="")
             {
                 url = ""; result = false;
             }
-            ds = Casetek.KPI.UserPwd.QueryPwd(Factory,strEmpID,strEmpPwd);
+            ds = Coeno.BLL.Entity.SystemSet.UserPwd.QueryPwd2(Factory,strEmpID,strEmpPwd);
             if (ds.Tables[0].Rows.Count>0)
             {
-                url = "./Default.aspx?loginUserName="+Encrypt.Encrypto(strEmpID)+"&&LoginState=ID";
+                url = "./Default.aspx?loginUserName="+ Coeno.Common.Utility.Encrypt.Encrypto(strEmpID)+"&&LoginState=ID";
                 result = true;
             }
             else
@@ -143,7 +142,7 @@ public partial class Login : System.Web.UI.Page
             SearchResult sresult = search.FindOne();
             if (sresult == null)
             {
-                url ="./Default.aspx?loginUserName="+Encrypt.Encrypto(strDomainAccount)+"&&loginState=AD";
+                url ="./Default.aspx?loginUserName="+ Coeno.Common.Utility.Encrypt.Encrypto(strDomainAccount)+"&&loginState=AD";
                 result = true;
             }
             else
