@@ -65,7 +65,7 @@
                                     <asp:Label ID="Label2" runat="server" Text="公司簡碼:" Width="70px"></asp:Label>
                                 </td>
                                 <td>
-                                    <asp:DropDownList ID="DropFactory" runat="server" Height="18px" Width="120px"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlFactory" runat="server" Height="18px" Width="120px"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>

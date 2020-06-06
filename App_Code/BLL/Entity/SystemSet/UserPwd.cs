@@ -218,232 +218,13 @@ public class UserPwd
             }
             return OPwd1;
         }
-
-        //1.日善
-        public static string ConOldPwdRS(string v_empid)
-        {
-            string OPwd1 = "";
-            string sql = "select Pwd1 from CasetekUserPwd_RS where EmpID = '"+v_empid+"'";
-
-            SqlConnection con = new SqlConnection(v_DbconnStr);
-            SqlDataAdapter da = new SqlDataAdapter(sql,con);
-
-            DataSet ds = new DataSet();
-
-            try
-            {
-                con.Open();
-                da.Fill(ds, "CasetekUserPwd_RS");
-            }
-            catch(SqlException e)
-            {
-                throw new Exception(e.Message);
-            }
-            finally
-            {
-                con.Close();
-            }
-
-            if (ds.Tables["CasetekUserPwd_RS"].Rows.Count>0)
-            {
-                OPwd1 = ds.Tables["CasetekUserPwd_RS"].Rows[0]["Pwd1"].ToString();
-            }
-            return OPwd1;
-        }
-        //2.日騰
-        public static string ConOldPwdRT(string v_empid)
-        {
-            string OPwd1 = "";
-            string sql = "select Pwd1 from CasetekUserPwd_RT where EmpID = '" + v_empid + "'";
-
-            SqlConnection con = new SqlConnection(v_DbconnStr);
-            SqlDataAdapter da = new SqlDataAdapter(sql, con);
-
-            DataSet ds = new DataSet();
-
-            try
-            {
-                con.Open();
-                da.Fill(ds, "CasetekUserPwd_RT");
-            }
-            catch (SqlException e)
-            {
-                throw new Exception(e.Message);
-            }
-            finally
-            {
-                con.Close();
-            }
-
-            if (ds.Tables["CasetekUserPwd_RT"].Rows.Count > 0)
-            {
-                OPwd1 = ds.Tables["CasetekUserPwd_RT"].Rows[0]["Pwd1"].ToString();
-            }
-            return OPwd1;
-        }
-
-        //3.日沛
-
-        public static string ConOldPwdRP(string v_empid)
-        {
-            string OPwd1 = "";
-            string sql = "select Pwd1 from CasetekUserPwd_RP where EmpID = '" + v_empid + "'";
-
-            SqlConnection con = new SqlConnection(v_DbconnStr);
-            SqlDataAdapter da = new SqlDataAdapter(sql, con);
-
-            DataSet ds = new DataSet();
-
-            try
-            {
-                con.Open();
-                da.Fill(ds, "CasetekUserPwd_RP");
-            }
-            catch (SqlException e)
-            {
-                throw new Exception(e.Message);
-            }
-            finally
-            {
-                con.Close();
-            }
-
-            if (ds.Tables["CasetekUserPwd_RP"].Rows.Count > 0)
-            {
-                OPwd1 = ds.Tables["CasetekUserPwd_RP"].Rows[0]["Pwd1"].ToString();
-            }
-            return OPwd1;
-        }
-
-        //4.日銘
-        public static string ConOldPwdRM(string v_empid)
-        {
-            string OPwd1 = "";
-            string sql = "select Pwd1 from CasetekUserPwd_RM where EmpID = '" + v_empid + "'";
-
-            SqlConnection con = new SqlConnection(v_DbconnStr);
-            SqlDataAdapter da = new SqlDataAdapter(sql, con);
-
-            DataSet ds = new DataSet();
-
-            try
-            {
-                con.Open();
-                da.Fill(ds, "CasetekUserPwd_RM");
-            }
-            catch (SqlException e)
-            {
-                throw new Exception(e.Message);
-            }
-            finally
-            {
-                con.Close();
-            }
-
-            if (ds.Tables["CasetekUserPwd_RM"].Rows.Count > 0)
-            {
-                OPwd1 = ds.Tables["CasetekUserPwd_RM"].Rows[0]["Pwd1"].ToString();
-            }
-            return OPwd1;
-        }
-
-        //5.日鎧
-        public static string ConOldPwdRK(string v_empid)
-        {
-            string OPwd1 = "";
-            string sql = "select Pwd1 from CasetekUserPwd_RK where EmpID = '" + v_empid + "'";
-
-            SqlConnection con = new SqlConnection(v_DbconnStr);
-            SqlDataAdapter da = new SqlDataAdapter(sql, con);
-
-            DataSet ds = new DataSet();
-
-            try
-            {
-                con.Open();
-                da.Fill(ds, "CasetekUserPwd_RK");
-            }
-            catch (SqlException e)
-            {
-                throw new Exception(e.Message);
-            }
-            finally
-            {
-                con.Close();
-            }
-
-            if (ds.Tables["CasetekUserPwd_RK"].Rows.Count > 0)
-            {
-                OPwd1 = ds.Tables["CasetekUserPwd_RK"].Rows[0]["Pwd1"].ToString();
-            }
-            return OPwd1;
-        }
-
-        //6.
-        public static string ConOldPwdSR(string v_empid)
-        {
-            string OPwd1 = "";
-            string sql = "select Pwd1 from CasetekUserPwd_SR where EmpID = '" + v_empid + "'";
-
-            SqlConnection con = new SqlConnection(v_DbconnStr);
-            SqlDataAdapter da = new SqlDataAdapter(sql, con);
-
-            DataSet ds = new DataSet();
-
-            try
-            {
-                con.Open();
-                da.Fill(ds, "CasetekUserPwd_SR");
-            }
-            catch (SqlException e)
-            {
-                throw new Exception(e.Message);
-            }
-            finally
-            {
-                con.Close();
-            }
-
-            if (ds.Tables["CasetekUserPwd_SR"].Rows.Count > 0)
-            {
-                OPwd1 = ds.Tables["CasetekUserPwd_SR"].Rows[0]["Pwd1"].ToString();
-            }
-            return OPwd1;
-        }
         #endregion
 
         #region 二、更新新密碼
-        //1.日善
-        public static string UpPwdRS(string v_empid,string v_pwd)
+        public static bool UpPwd(string v_empid, string v_pwd)
         {
-            string v_result = "";
-
-            string sql = "update CasetekUserPwd_RS set Pwd1 = '"+v_pwd+"' where empid = '"+v_empid+"'";
-            SqlConnection con = new SqlConnection(v_DbconnStr);
-            SqlCommand com = new SqlCommand(sql,con);
-
-            try
-            {
-                con.Open();
-                com.ExecuteNonQuery();
-                v_result = "密碼更新成功";
-            }
-            catch(SqlException e)
-            {
-                v_result = "密碼更新失敗";
-            }
-            finally
-            {
-                con.Close();
-            }
-            return v_result;
-        }
-        //2.日騰
-        public static string UpPwdRT(string v_empid, string v_pwd)
-        {
-            string v_result = "";
-
-            string sql = "update CasetekUserPwd_RT set Pwd1 = '" + v_pwd + "' where empid = '" + v_empid + "'";
+            bool result = false;
+            string sql = "update CasetekUserPwd set Pwd1 = '" + v_pwd + "' where empid = '" + v_empid + "'";
             SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlCommand com = new SqlCommand(sql, con);
 
@@ -451,121 +232,17 @@ public class UserPwd
             {
                 con.Open();
                 com.ExecuteNonQuery();
-                v_result = "密碼更新成功";
+                result = true;
             }
             catch (SqlException e)
             {
-                v_result = "密碼更新失敗";
+                result = false;
             }
             finally
             {
                 con.Close();
             }
-            return v_result;
-        }
-
-        //3.日沛
-        public static string UpPwdRP(string v_empid, string v_pwd)
-        {
-            string v_result = "";
-
-            string sql = "update CasetekUserPwd_RP set Pwd1 = '" + v_pwd + "' where empid = '" + v_empid + "'";
-            SqlConnection con = new SqlConnection(v_DbconnStr);
-            SqlCommand com = new SqlCommand(sql, con);
-
-            try
-            {
-                con.Open();
-                com.ExecuteNonQuery();
-                v_result = "密碼更新成功";
-            }
-            catch (SqlException e)
-            {
-                v_result = "密碼更新失敗";
-            }
-            finally
-            {
-                con.Close();
-            }
-            return v_result;
-        }
-
-        //4.日銘
-        public static string UpPwdRM(string v_empid, string v_pwd)
-        {
-            string v_result = "";
-
-            string sql = "update CasetekUserPwd_RM set Pwd1 = '" + v_pwd + "' where empid = '" + v_empid + "'";
-            SqlConnection con = new SqlConnection(v_DbconnStr);
-            SqlCommand com = new SqlCommand(sql, con);
-
-            try
-            {
-                con.Open();
-                com.ExecuteNonQuery();
-                v_result = "密碼更新成功";
-            }
-            catch (SqlException e)
-            {
-                v_result = "密碼更新失敗";
-            }
-            finally
-            {
-                con.Close();
-            }
-            return v_result;
-        }
-
-        //5.日鎧
-        public static string UpPwdRK(string v_empid, string v_pwd)
-        {
-            string v_result = "";
-
-            string sql = "update CasetekUserPwd_RK set Pwd1 = '" + v_pwd + "' where empid = '" + v_empid + "'";
-            SqlConnection con = new SqlConnection(v_DbconnStr);
-            SqlCommand com = new SqlCommand(sql, con);
-
-            try
-            {
-                con.Open();
-                com.ExecuteNonQuery();
-                v_result = "密碼更新成功";
-            }
-            catch (SqlException e)
-            {
-                v_result = "密碼更新失敗";
-            }
-            finally
-            {
-                con.Close();
-            }
-            return v_result;
-        }
-
-        //6.勝瑞
-        public static string UpPwdSR(string v_empid, string v_pwd)
-        {
-            string v_result = "";
-
-            string sql = "update CasetekUserPwd_SR set Pwd1 = '" + v_pwd + "' where empid = '" + v_empid + "'";
-            SqlConnection con = new SqlConnection(v_DbconnStr);
-            SqlCommand com = new SqlCommand(sql, con);
-
-            try
-            {
-                con.Open();
-                com.ExecuteNonQuery();
-                v_result = "密碼更新成功";
-            }
-            catch (SqlException e)
-            {
-                v_result = "密碼更新失敗";
-            }
-            finally
-            {
-                con.Close();
-            }
-            return v_result;
+            return result;
         }
         #endregion
 
@@ -785,68 +462,10 @@ public class UserPwd
         #endregion
 
         #region 初始化用戶密碼
-        public static int PwdInitialization(string v_empid,string v_groupid)
-        {
-            int result = 0;
-            string sql = "";
-            string sqlrs = "update CasetekUserPwd_RS set Pwd1 ='12345' from CasetekUserPwd_RS a,HR_Emp_Now b where a.EmpID = b.EmpID and a.EmpID = '" + v_empid + "' and b.GroupID = '" + v_groupid + "'";
-            string sqlrt = "update CasetekUserPwd_RT set Pwd1 ='12345' from CasetekUserPwd_RT a,HR_Emp_Now b where a.EmpID = b.EmpID and a.EmpID = '" + v_empid + "' and b.GroupID = '" + v_groupid + "'";
-            string sqlrp = "update CasetekUserPwd_RP set Pwd1 ='12345' from CasetekUserPwd_RP a,HR_Emp_Now b where a.EmpID = b.EmpID and a.EmpID = '" + v_empid + "' and b.GroupID = '" + v_groupid + "'";
-            string sqlrk = "update CasetekUserPwd_RK set Pwd1 ='12345' from CasetekUserPwd_RK a,HR_Emp_Now b where a.EmpID = b.EmpID and a.EmpID = '" + v_empid + "' and b.GroupID = '" + v_groupid + "'";
-            string sqlrm = "update CasetekUserPwd_RM set Pwd1 ='12345' from CasetekUserPwd_RM a,HR_Emp_Now b where a.EmpID = b.EmpID and a.EmpID = '" + v_empid + "' and b.GroupID = '" + v_groupid + "'";
-            string sqlsr = "update CasetekUserPwd_SR set Pwd1 ='12345' from CasetekUserPwd_SR a,HR_Emp_Now b where a.EmpID = b.EmpID and a.EmpID = '" + v_empid + "' and b.GroupID = '" + v_groupid + "'";
-
-            if (v_groupid== "0112")
-            {
-                sql = sqlrs;
-            }
-            if (v_groupid== "0111")
-            {
-                sql = sqlrk;
-            }
-            if (v_groupid== "0103")
-            {
-                sql = sqlrm;
-            }
-            if (v_groupid== "0105")
-            {
-                sql = sqlrp;
-            }
-            if (v_groupid== "0000")
-            {
-                sql = sqlrt;
-            }
-            if (v_groupid== "0102")
-            {
-                sql = sqlsr;
-            }
-
-            SqlConnection con = new SqlConnection(v_DbconnStr);
-            SqlCommand com = new SqlCommand(sql,con);
-
-            try
-            {
-                con.Open();
-                com.ExecuteNonQuery();
-                result = 1;
-            }
-            catch
-            {
-                result = 0;
-            }
-            finally
-            {
-                con.Close();
-            }
-            return result;
-        }
-        #endregion
-
         public static int PwdInitialization2(string v_empid, string v_groupid)
         {
             int result = 0;
-            string sql = "";
-            string sqlr = "update CasetekUserPwd set Pwd1 ='12345' from CasetekUserPwd a,HR_Emp_Now b where a.EmpID = b.EmpID and a.EmpID = '" + v_empid + "' and b.GroupID = '" + v_groupid + "'";
+            string sql = "update CasetekUserPwd set Pwd1 ='12345' from CasetekUserPwd a,HR_Emp_Now b where a.EmpID = b.EmpID and a.EmpID = '" + v_empid + "' and b.GroupID = '" + v_groupid + "'";
             SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlCommand com = new SqlCommand(sql, con);
             try
@@ -865,6 +484,8 @@ public class UserPwd
             }
             return result;
         }
+        #endregion
+
 
         public static DataSet QueryPwd(string v_factory,string v_empid,string v_pwd)
         {
@@ -945,6 +566,27 @@ public class UserPwd
             }
             return ds;
         }
+        /// <summary>
+        /// 驗證輸入舊密碼,
+        /// </summary>
+        /// <param name="v_empid"></param>
+        /// <param name="v_OldPwd"></param>
+        /// <returns>驗證失敗 false 驗證成功 true</returns>
+        public static bool confirmOldPwd(string v_empid, string v_OldPwd)
+        {
+            bool result = false;
+            string oldPwd = Coeno.BLL.Entity.SystemSet.UserPwd.ConOldPwd(v_empid);
+            if(oldPwd == v_OldPwd)
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+            return result;
+        }
+
 
     }
 

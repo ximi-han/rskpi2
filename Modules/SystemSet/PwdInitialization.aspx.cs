@@ -57,13 +57,13 @@ public partial class Modules_SystemSet_PwdInitialization : System.Web.UI.Page
                 int result = Coeno.BLL.Entity.SystemSet.UserPwd.PwdInitialization2(empid,groupid);
                 if (result == 0)
                 {
-                    labMsg.Text = "初始化用戶密碼失敗！！";
+                    labMsg.Text = "初始化用戶密碼失敗";
                     labMsg.ForeColor = System.Drawing.Color.Red;
                     return;
                 }
                 else
                 {
-                    labMsg.Text = "初始化用戶密碼成功初始密碼為12345！！";
+                    labMsg.Text = "初始化用戶密碼成功，初始密碼為 12345";
                     labMsg.ForeColor = System.Drawing.Color.Blue;
                     GridViewBind1();
                     return;

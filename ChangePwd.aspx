@@ -25,15 +25,6 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <asp:Label runat="server">廠區名：</asp:Label>
-                                </td>
-                                <td>
-                                    <asp:DropDownList runat="server" Width="153px" Height="22px" ID="ddlFactory">
-                                    </asp:DropDownList>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
                                     <asp:Label runat="server">員工號：</asp:Label>
                                 </td>
                                 <td>

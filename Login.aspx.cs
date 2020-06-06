@@ -21,7 +21,11 @@ public partial class Login : System.Web.UI.Page
         }
     }
 
-    
+    /// <summary>
+    /// 登錄按鈕事件
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void btnLogin_Click(object sender, EventArgs e)
     {
         lblMsg.Text = "";
@@ -66,6 +70,10 @@ public partial class Login : System.Web.UI.Page
 
     }
 
+    /// <summary>
+    /// 獲取域賬戶名稱
+    /// </summary>
+    /// <returns></returns>
     public string getPageUserIdentityName()
     {
         string puidName = null;
@@ -83,7 +91,12 @@ public partial class Login : System.Web.UI.Page
         return puidName;
     }
 
-    //验证用户登录:By工号
+    /// <summary>
+    /// 验证用户登录:By工号
+    /// </summary>
+    /// <param name="v_strUserAccount"></param>
+    /// <param name="v_strPwd"></param>
+    /// <returns></returns>
     public bool UserLoginVerifyByEmpID(string v_strUserAccount,string v_strPwd)
     {
         bool result = false;
@@ -121,7 +134,12 @@ public partial class Login : System.Web.UI.Page
 
     }
 
-    //验证用户登录:By域账号
+    /// <summary>
+    /// 验证用户登录:By域账号
+    /// </summary>
+    /// <param name="v_strUserAccount"></param>
+    /// <param name="v_strPwd"></param>
+    /// <returns></returns>
     public bool UserLoginVerifyByADAccount(string v_strUserAccount,string v_strPwd)
     {
         bool result = false;
