@@ -487,61 +487,7 @@ public class UserPwd
         #endregion
 
 
-        public static DataSet QueryPwd(string v_factory,string v_empid,string v_pwd)
-        {
-            string sql = null;
-            //1.日善
-            if (v_factory=="0112")
-            {
-                sql = "select empid from CasetekUserPwd_RS where empid = '" + v_empid + "' and Pwd1 = '" + v_pwd + "'"; ;
-            }
-            //2.日騰
-            if (v_factory == "0000")
-            {
-                sql = "select empid from CasetekUserPwd_RT where empid = '" + v_empid + "' and Pwd1 = '" + v_pwd + "'";
-            }
-            //3.日沛
-            if (v_factory == "0105")
-            {
-                sql = "select empid from CasetekUserPwd_RP where empid = '" + v_empid + "' and Pwd1 = '" + v_pwd + "'";
-            }
-            //4.日銘
-            if (v_factory == "0103")
-            {
-                sql = "select empid from CasetekUserPwd_RM where empid = '" + v_empid + "' and Pwd1 = '" + v_pwd + "'";
-            }
-            //5.日鎧
-            if (v_factory == "0111")
-            {
-                sql = "select empid from CasetekUserPwd_RK where empid = '" + v_empid + "' and Pwd1 = '" + v_pwd + "'";
-            }
-            //6.勝瑞
-            if (v_factory == "0102")
-            {
-                sql = "select empid from CasetekUserPwd_SR where empid = '" + v_empid + "' and Pwd1 = '" + v_pwd + "'";
-            }
-
-            SqlConnection con = new SqlConnection(v_DbconnStr);
-            SqlDataAdapter da = new SqlDataAdapter(sql,con);
-            DataSet ds = new DataSet();
-
-            try
-            {
-                con.Open();
-                da.Fill(ds, "CasetekUserPwd");
-            }
-            catch (SqlException e)
-            {
-                throw new Exception(e.Message);
-
-            }
-            finally
-            {
-                con.Close();
-            }
-            return ds;
-        }
-
+      
         public static DataSet QueryPwd2(string v_factory, string v_empid, string v_pwd)
         {
             string sql = null;

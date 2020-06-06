@@ -113,8 +113,10 @@ public partial class Login : System.Web.UI.Page
             Factory = Coeno.BLL.Entity.SystemSet.Factorys.UserInFactorys(txtEmpID.Text);
             if (Factory == null || Factory =="")
             {
-                url = ""; result = false;
+                url = "";
+                return false;
             }
+
             ds = Coeno.BLL.Entity.SystemSet.UserPwd.QueryPwd2(Factory,strEmpID,strEmpPwd);
             if (ds.Tables[0].Rows.Count>0)
             {
@@ -174,4 +176,6 @@ public partial class Login : System.Web.UI.Page
         }
         return result;
     }
+
+
 }
