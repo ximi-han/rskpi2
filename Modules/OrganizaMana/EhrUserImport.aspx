@@ -21,37 +21,37 @@
                                     <asp:Label ID="Label1" runat="server" Width="40px"></asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Button ID="Button1" runat="server" Text="日騰(RT)導入" Height="25px" Width="80px" />
+                                    <asp:Button ID="btnRT" runat="server" Text="日騰(RT)導入" Height="25px" Width="80px" OnClick="btnRT_Click" />
                                 </td>
                                 <td>
                                     <span style="height :25px;width:20px" >>></span>
                                 </td>
                                 <td>
-                                    <asp:Button ID="Button3" runat="server" Text="日沛(RP)導入" Height="25px" Width="80px" />
+                                    <asp:Button ID="btnRP" runat="server" Text="日沛(RP)導入" Height="25px" Width="80px" OnClick="btnRP_Click" />
                                 </td>
                                 <td>
                                     <span style="height :25px;width:20px" >>></span>
                                 </td>
                                 <td>
-                                    <asp:Button ID="Button4" runat="server" Text="日銘(RM)導入" Height="25px" Width="80px" />
+                                    <asp:Button ID="btnRM" runat="server" Text="日銘(RM)導入" Height="25px" Width="80px" OnClick="btnRM_Click" />
                                 </td>
                                 <td>
                                     <span style="height :25px;width:20px" >>></span>
                                 </td>
                                 <td>
-                                    <asp:Button ID="Button5" runat="server" Text="日鎧(RK)導入" Height="25px" Width="80px" />
+                                    <asp:Button ID="btnRK" runat="server" Text="日鎧(RK)導入" Height="25px" Width="80px" OnClick="btnRK_Click" />
                                 </td>
                                 <td>
                                     <span style="height :25px;width:20px" >>></span>
                                 </td>
                                 <td>
-                                    <asp:Button ID="Button6" runat="server" Text="日善(RS)導入" Height="25px" Width="80px" />
+                                    <asp:Button ID="btnRS" runat="server" Text="日善(RS)導入" Height="25px" Width="80px" OnClick="btnRS_Click" />
                                 </td>
                                 <td>
                                     <span style="height :25px;width:20px" >>></span>
                                 </td>
                                 <td>
-                                    <asp:Button ID="Button7" runat="server" Text="勝瑞(SR)導入" Height="25px" Width="80px" />
+                                    <asp:Button ID="btnSR" runat="server" Text="勝瑞(SR)導入" Height="25px" Width="80px" OnClick="btnSR_Click" />
                                 </td>
                             </tr>
                         </tbody>

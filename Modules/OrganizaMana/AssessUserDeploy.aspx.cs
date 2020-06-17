@@ -28,7 +28,7 @@ public partial class Modules_OrganizaMana_AssessUserDeploy : System.Web.UI.Page
         }
     }
 
-
+    //1.1驗證權限
     protected void PageForm_Permission(string v_empID,string[] v_roleID)
     {
         string  UserInFactory = Coeno.BLL.Entity.SystemSet.Factorys.UserInFactorys(v_empID);
@@ -39,7 +39,7 @@ public partial class Modules_OrganizaMana_AssessUserDeploy : System.Web.UI.Page
             return;
         }
     }
-
+    //1.2綁定Site
     protected void PageForm_ddlSiteBind()
     {
         DataTable site = new DataTable();
@@ -49,7 +49,7 @@ public partial class Modules_OrganizaMana_AssessUserDeploy : System.Web.UI.Page
         DropDownList1.DataValueField = "GroupID";
         DropDownList1.DataBind();
     }
-
+    //1.3綁定Dept
     protected void PageForm_ddlDept(string site)
     {
         DataTable Dept = new DataTable();
@@ -60,7 +60,7 @@ public partial class Modules_OrganizaMana_AssessUserDeploy : System.Web.UI.Page
         DropDownList2.DataValueField = "DeptID";
         DropDownList2.DataBind();
     }
-
+    //2 Site點選并更
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {
         LabMsg.Text = "";
@@ -68,6 +68,7 @@ public partial class Modules_OrganizaMana_AssessUserDeploy : System.Web.UI.Page
         
     }
 
+    //3 查詢
     protected void btnQuery_Click(object sender, EventArgs e)
     {
         GridView1.DataSource = null;
@@ -118,6 +119,7 @@ public partial class Modules_OrganizaMana_AssessUserDeploy : System.Web.UI.Page
         GridView1.DataBind();
     }
 
+    //excel導出
     protected void btnExcel_Click(object sender, EventArgs e)
     {
         GridView1.DataSource = null;
@@ -252,7 +254,7 @@ public partial class Modules_OrganizaMana_AssessUserDeploy : System.Web.UI.Page
             else
             {
                 DataTable gpdt = new DataTable();
-                gpdt = Coeno.BLL.Entity.OrganizaMana.AssessUserDeploy.QueryDeployUser(TextBox1.Text);
+                gpdt = Coeno.BLL.Entity.OrganizaMana.AssessUserDeploy.QueryDeployDeptName(TextBox5.Text);
 
                 if (gpdt.Rows.Count>0)
                 {

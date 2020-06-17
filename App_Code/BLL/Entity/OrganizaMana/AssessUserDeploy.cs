@@ -14,7 +14,7 @@ namespace Coeno.BLL.Entity.OrganizaMana
 { 
 public class AssessUserDeploy
 {
-    private static string _connectionString;
+    private static string v_DbconnStr;
     static AssessUserDeploy()
     {
         Initialize();
@@ -22,17 +22,8 @@ public class AssessUserDeploy
 
     public static void Initialize()
     {
-       string v_ConnectionStringsType = "KPIConnectionString";
-
-       if (ConfigurationManager.ConnectionStrings[v_ConnectionStringsType] == null ||
-           ConfigurationManager.ConnectionStrings[v_ConnectionStringsType].ConnectionString.Trim() == "")
-          {
-                throw new Exception("A connection string named 'ConnectionStringType' with a valid connection string " +
-                                    "must exist in the <connectionStrings> configuration section for the application.");
-          }
-
-          _connectionString = ConfigurationManager.ConnectionStrings[v_ConnectionStringsType].ConnectionString;
-      }
+            v_DbconnStr = Coeno.BLL.Data.DbAccess.GetKpiDbConnStr();
+        }
 
         //查詢調配人員信息以廠區部門
         public static DataTable QueryDeployUser(string v_site ,string v_deptid)
@@ -40,7 +31,7 @@ public class AssessUserDeploy
             string sql = "";
             sql = "select a.EmpID,a.EmpName,a.DomainAccount,a.GroupID,b.FactoryName,a.DeptID,a.DeptName,a.TitleName from HR_Emp_Now a ,CasetekFactory b where a.GroupID='" + v_site+ "' and a.DeptID like '"+v_deptid+ "%' and a.GroupID=b.GroupID";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql,con);
 
             DataSet ds = new DataSet();
@@ -67,7 +58,7 @@ public class AssessUserDeploy
             string sql = "";
             sql = "select a.EmpID,a.EmpName,a.DomainAccount,a.GroupID,b.FactoryName,a.DeptID,a.DeptName,a.TitleName from HR_Emp_Now a,CasetekFactory b where a.EmpID = '" + v_empid+ "' and a.GroupID=b.GroupID";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql,con);
 
             DataSet ds = new DataSet();
@@ -91,9 +82,9 @@ public class AssessUserDeploy
         public static DataTable QueryDeployDeptName(string v_deptid)
         {
             string sql = "";
-            sql = "select DeptName from HR_Dept where DeptID = '"+v_deptid+"'";
+            sql = "select DeptName,GroupID from HR_Dept where DeptID = '" + v_deptid+"'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql,con);
 
             DataSet ds = new DataSet();
@@ -118,9 +109,9 @@ public class AssessUserDeploy
         public static DataTable QueryEmpAdjust(string v_empid)
         {
             string sql = "";
-            sql = "select EmpID,EmpName,GroupID,DeptID,DeptName from HR_Emp_Now_Adjust where EmpID = '"+v_empid+"'";
+            sql = "select EmpID,EmpName,NewGroupID,DeptID,DeptName from HR_Emp_Now_Adjust where EmpID = '"+v_empid+"'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlDataAdapter da = new SqlDataAdapter(sql,con);
 
             DataSet ds = new DataSet();
@@ -146,9 +137,9 @@ public class AssessUserDeploy
         {
             int result = 0;
             string sql = "";
-            sql = "insert into HR_Emp_Now_Adjust (EmpID,EmpName,GroupID,DeptID,DeptName,NewDeptID,NewDeptName,CUser,CDate) values ('" + v_empid+"','"+v_empname+"','"+v_groupid+"','"+v_deptid+"','"+v_deptname+"','"+v_newdeptid+"','"+v_newdeptname+"','"+v_cuser+"','"+v_cdate+"')";
+            sql = "insert into HR_Emp_Now_Adjust (EmpID,EmpName,NewGroupID,DeptID,DeptName,NewDeptID,NewDeptName,CUser,CDate) values ('" + v_empid+"','"+v_empname+"','"+v_groupid+"','"+v_deptid+"','"+v_deptname+"','"+v_newdeptid+"','"+v_newdeptname+"','"+v_cuser+"','"+v_cdate+"')";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlCommand com = new SqlCommand(sql,con);
 
             try
@@ -175,7 +166,7 @@ public class AssessUserDeploy
             string sql = "";
             sql = "update HR_Emp_Now_Adjust set NewDeptID = '"+v_newdepid+ "' , NewDeptName= '"+v_newdeptname+ "',LUser='"+v_Luser+ "',LDate='"+v_Ldate+"' where EmpID= '" + v_empid+"'";
 
-            SqlConnection con = new SqlConnection(_connectionString);
+            SqlConnection con = new SqlConnection(v_DbconnStr);
             SqlCommand com = new SqlCommand(sql,con);
 
             try

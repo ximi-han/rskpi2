@@ -40,7 +40,7 @@ public partial class MasterPageDefault : System.Web.UI.MasterPage
 
     protected void AccountUserBind()
     {
-        String v_Empid = "";
+        string v_Empid = "";
         string EmpID = "";
         string v_domain;
         string v_domainaccount;
@@ -70,4 +70,6 @@ public partial class MasterPageDefault : System.Web.UI.MasterPage
 
         Session["txtCurrentEmpID"] = txtCurrentEmpID.Text;
     }
+
+
 }

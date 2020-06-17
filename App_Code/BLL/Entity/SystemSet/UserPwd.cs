@@ -486,8 +486,6 @@ public class UserPwd
         }
         #endregion
 
-
-      
         public static DataSet QueryPwd2(string v_factory, string v_empid, string v_pwd)
         {
             string sql = null;

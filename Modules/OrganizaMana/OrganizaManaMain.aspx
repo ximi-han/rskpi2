@@ -48,7 +48,23 @@
                                     <asp:Image ID="Image5" runat="server" ImageUrl="~/Images/Item/ba01.gif"/>
                                 </td>
                                 <td>
+                                    <asp:HyperLink ID="HyperLink7" runat="server" NavigateUrl="~/Modules/OrganizaMana/AssessUserDeployQuery.aspx">考核人員調配信息查詢</asp:HyperLink>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <asp:Image ID="Image6" runat="server" ImageUrl="~/Images/Item/ba01.gif"/>
+                                </td>
+                                <td>
                                     <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/Modules/OrganizaMana/AssessSupervisorDeployMana.aspx">考核組織主管調配</asp:HyperLink>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <asp:Image ID="Image7" runat="server" ImageUrl="~/Images/Item/ba01.gif"/>
+                                </td>
+                                <td>
+                                    <asp:HyperLink ID="HyperLink8" runat="server" NavigateUrl="~/Modules/OrganizaMana/AssessSupervisorDeployManaQuery.aspx">考核組織主管調配信息查詢</asp:HyperLink>
                                 </td>
                             </tr>
                         </tbody>
@@ -59,15 +75,15 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <asp:Image ID="Image6" runat="server" ImageUrl="~/Images/Item/ba01.gif"/>
+                                    <asp:Image ID="Image8" runat="server" ImageUrl="~/Images/Item/ba01.gif"/>
                                 </td>
                                 <td>
-                                    <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/Modules/OrganizaMana/AssessUserValidation.aspx">考核人員生效確認</asp:HyperLink>
+                                    <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/Modules/OrganizaMana/AssessUserValidation.aspx">人員生效確認</asp:HyperLink>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <asp:Image ID="Image7" runat="server" ImageUrl="~/Images/Item/ba01.gif"/>
+                                    <asp:Image ID="Image9" runat="server" ImageUrl="~/Images/Item/ba01.gif"/>
                                 </td>
                                 <td>
                                     <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="~/Modules/OrganizaMana/AssessOrganizaManaValidation.aspx">考核組織主管生效確認</asp:HyperLink>

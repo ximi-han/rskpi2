@@ -27,4 +27,72 @@ public partial class Modules_OrganizaMana_EhrUserImport : System.Web.UI.Page
         ddlFactory.DataBind();
 
     }
+
+    protected void btnRT_Click(object sender, EventArgs e)
+    {
+        //
+        string groupID = "RT";
+        string returnNum;
+        string returnID;
+        string returnMsg;
+        Coeno.BLL.Entity.OrganizaMana.EhrUserImport.ImprotUser(groupID, out returnNum,out  returnID,out  returnMsg);
+        LabMsg.Text = returnMsg+ " 匯整入人員資料數據：" + returnNum + "條";
+    }
+
+    protected void btnRP_Click(object sender, EventArgs e)
+    {
+        //
+        string groupID = "RP";
+        string returnNum;
+        string returnID;
+        string returnMsg;
+        Coeno.BLL.Entity.OrganizaMana.EhrUserImport.ImprotUser(groupID, out returnNum, out returnID, out returnMsg);
+        LabMsg.Text = returnMsg + " 匯整入人員資料數據：" + returnNum + "條";
+
+    }
+
+    protected void btnRM_Click(object sender, EventArgs e)
+    {
+        //
+        string groupID = "RM";
+        string returnNum;
+        string returnID;
+        string returnMsg;
+        Coeno.BLL.Entity.OrganizaMana.EhrUserImport.ImprotUser(groupID, out returnNum, out returnID, out returnMsg);
+        LabMsg.Text = returnMsg + " 匯整入人員資料數據：" + returnNum + "條";
+    }
+
+    protected void btnRK_Click(object sender, EventArgs e)
+    {
+        //
+        string groupID = "RK";
+        string returnNum;
+        string returnID;
+        string returnMsg;
+        Coeno.BLL.Entity.OrganizaMana.EhrUserImport.ImprotUser(groupID, out returnNum, out returnID, out returnMsg);
+        LabMsg.Text = returnMsg + " 匯整入人員資料數據：" + returnNum + "條";
+    }
+
+    protected void btnRS_Click(object sender, EventArgs e)
+    {
+        //
+        string groupID = "RS";
+        string returnNum;
+        string returnID;
+        string returnMsg;
+        Coeno.BLL.Entity.OrganizaMana.EhrUserImport.ImprotUser(groupID, out returnNum, out returnID, out returnMsg);
+        LabMsg.Text = returnMsg + " 匯整入人員資料數據：" + returnNum + "條";
+    }
+
+    protected void btnSR_Click(object sender, EventArgs e)
+    {
+        //
+        string groupID = "SR";
+        string returnNum;
+        string returnID;
+        string returnMsg;
+        Coeno.BLL.Entity.OrganizaMana.EhrUserImport.ImprotUser(groupID, out returnNum, out returnID, out returnMsg);
+        LabMsg.Text = returnMsg + " 匯整入人員資料數據：" + returnNum + "條";
+    }
+
 }
